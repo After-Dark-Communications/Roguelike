@@ -35,7 +35,7 @@ public class TurnCheck : MonoBehaviour
 
         if (_Player != null)
         {
-            Debug.Log("Found a \"Player\" object. Found Object: " + _Player);
+            //Debug.Log("Found a \"Player\" object. Found Object: " + _Player);
         }
         else
         {
