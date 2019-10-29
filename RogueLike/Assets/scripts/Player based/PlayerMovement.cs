@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [SelectionBase]
 public class PlayerMovement : MonoBehaviour
@@ -11,18 +12,21 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _permitMove = false;
     private bool _StartedCoroutine = false;
-    private Vector2 newPos;
+    private Vector3 _newPos;
+    [SerializeField] private Tilemap _WallTile;
     private void Start()
     {
-        newPos = gameObject.transform.position;
+        _newPos = gameObject.transform.position;
     }
     void Update()
     {
+        Debug.DrawLine(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), new Vector3Int((int)transform.position.x + (int)Input.GetAxisRaw("Horizontal"), (int)transform.position.y + (int)Input.GetAxisRaw("Vertical"), 0), Color.white);
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             if (_permitMove)
             {
-                MoveCharacter();
+                //MoveCharacter();
+                TryMove();
             }
             if (!_StartedCoroutine)
             {
@@ -31,16 +35,47 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoveCharacter()
+    void TryMove()
     {
         float X_Speed = Input.GetAxisRaw("Horizontal") * _HorizontalMoveDistance;
         float Y_Speed = Input.GetAxisRaw("Vertical") * _VerticalMoveDistance;
 
-        newPos += new Vector2(X_Speed, Y_Speed);
-        //Debug.Log("newPos: " + newPos);
-        gameObject.transform.position = newPos;
-
+        if (!Occupied((int)X_Speed, (int)Y_Speed))
+        {
+            _newPos += new Vector3(X_Speed, Y_Speed);
+            gameObject.transform.position = _newPos + new Vector3(0,0,-1);
+        }
+        else
+        {
+            Debug.Log("You Buffoon, that's a wall!");
+        }
     }
+
+    bool Occupied(int X, int Y)
+    {
+        if (_WallTile.GetTile(new Vector3Int((int)gameObject.transform.position.x + X, (int)gameObject.transform.position.y + Y, 0)))
+        {
+            //Debug.Log("Tile:" + new Vector3Int((int)transform.position.x + X, (int)transform.position.y + Y, 0));
+            
+            return true;
+        }
+        else
+        {
+            return false;
+
+        }
+    }
+
+    //private void MoveCharacter()
+    //{
+    //    float X_Speed = Input.GetAxisRaw("Horizontal") * _HorizontalMoveDistance;
+    //    float Y_Speed = Input.GetAxisRaw("Vertical") * _VerticalMoveDistance;
+
+    //    newPos += new Vector2(X_Speed, Y_Speed);
+    //    //Debug.Log("newPos: " + newPos);
+    //    gameObject.transform.position = newPos;
+
+    //}
 
 
 

@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\DEMO\DEMO.cs" />
+    <Compile Include="Assets\scripts\DEMO\Pickup.cs" />
     <Compile Include="Assets\scripts\misc\create sprites.cs" />
     <Compile Include="Assets\scripts\Player based\PlayerMovement.cs" />
     <Compile Include="Assets\scripts\Player based\TurnCheck.cs" />
