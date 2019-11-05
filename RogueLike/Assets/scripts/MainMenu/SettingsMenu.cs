@@ -8,7 +8,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioSource audioSrc;
     private float musicVolume = 1f;
 
-    void Start()
+    void Awake()
     {
         audioSrc = GetComponent<AudioSource>();
     }
