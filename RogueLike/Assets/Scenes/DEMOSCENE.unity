@@ -1294,9 +1294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762160902297d5041b0a518a19ac6476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rows: 40
-  _columns: 40
+  _rows: 50
+  _columns: 50
   _wallTile: {fileID: 11400000, guid: 28a091d1bb282b641ab3eb3f91fba63a, type: 2}
   _floorTile: {fileID: 11400000, guid: 6c8f7d6c76d22f2458e8c315e24e86ba, type: 2}
   _wallTileMap: {fileID: 1913521567}
   _floorTileMap: {fileID: 1035170142}
+  _overlappingGroupsCount: 0
