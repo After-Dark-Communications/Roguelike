@@ -6,46 +6,48 @@ using Assets.scripts.Level_Generation;
 
 public class LevelCreator : MonoBehaviour
 {
-    public int _rows;
-    public int _columns;
-    public Tile _wallTile;
-    public Tile _floorTile;
-    public Tilemap _wallTileMap;
-    public Tilemap _floorTileMap;
-    public int _overlappingGroupsCount = 0;
+    [SerializeField] private int _Rows;
+    [SerializeField] private int _Columns;
+    [SerializeField] private Tile _WallTile;
+    [SerializeField] private Tile _FloorTile;
+    [SerializeField] private Tilemap _WallTileMap;
+    [SerializeField] private Tilemap _FloorTileMap;
+    [Tooltip("X:How many rooms |Y: Min size |Z: max size")]
+    [SerializeField] private Vector3Int _RoomSettings;
 
-    private List<Vector3Int> _gridPositions = new List<Vector3Int>();
-    private List<Room> _rooms = new List<Room>();
-    private List<Room> notConnected = new List<Room>();
-    private List<Room> connectedRooms = new List<Room>();
-    private int[] mapBorders;
-    private List<Vector3Int> availableOpenings = new List<Vector3Int>();
+    private List<Vector3Int> _GridPositions = new List<Vector3Int>();
+    private List<Room> _Rooms = new List<Room>();
+    private List<Room> _NotConnected = new List<Room>();
+    private int _OverlappingGroupsCount = 0;
+    private List<Room> _ConnectedRooms = new List<Room>();
+    private int[] _MapBorders;
+    private List<Vector3Int> _AvailableOpenings = new List<Vector3Int>();
 
     void Awake()
     {
-        _rooms.Clear();
-        mapBorders = new int[4] { 0 - _columns / 2, 0 - _rows / 2, _columns / 2, _rows / 2 };
+        _Rooms.Clear();
+        _MapBorders = new int[4] { 0 - _Columns / 2, 0 - _Rows / 2, _Columns / 2, _Rows / 2 };
         InitializeGrid();
         //GenerateEmptyFloor();
-        GenerateRooms(10, 4, 10);
+        GenerateRooms(_RoomSettings.x, _RoomSettings.y, _RoomSettings.z);
         AddConnections();
     }
 
     private void InitializeGrid()
     {
-        _gridPositions.Clear();
-        for (int x = mapBorders[0]; x < mapBorders[2]; x++)
+        _GridPositions.Clear();
+        for (int x = _MapBorders[0]; x < _MapBorders[2]; x++)
         {
-            for (int y = mapBorders[1]; y < mapBorders[3]; y++)
+            for (int y = _MapBorders[1]; y < _MapBorders[3]; y++)
             {
-                _gridPositions.Add(new Vector3Int(x, y, 0));
+                _GridPositions.Add(new Vector3Int(x, y, 0));
             }
         }
     }
 
     private void GenerateEmptyFloor()
     {
-        GenerateWallsAndFloors(new Vector3Int(mapBorders[0], mapBorders[1], 0), mapBorders[2], mapBorders[3], true);
+        GenerateWallsAndFloors(new Vector3Int(_MapBorders[0], _MapBorders[1], 0), _MapBorders[2], _MapBorders[3], true);
     }
 
     private void GenerateWallsAndFloors(Vector3Int pos, int columns, int rows, bool playerRoom)
@@ -58,36 +60,36 @@ public class LevelCreator : MonoBehaviour
                 Vector3Int here = new Vector3Int(x, y, 0);
                 if (CheckWallSpot(pos, columns, rows, x, y))
                 {
-                    if (!_floorTileMap.HasTile(here))
+                    if (!_FloorTileMap.HasTile(here))
                     {
-                        _wallTileMap.SetTile(here, _wallTile);
+                        _WallTileMap.SetTile(here, _WallTile);
                         newRoom.roomWalls.Add(here);                /*new TerrainTile(here, TileTypes.Wall)*/
                     }
                     else
                     {
-                        newRoom = UpdateRoomOverlaps(newRoom, here); 
+                        newRoom = UpdateRoomOverlaps(newRoom, here);
                     }
                 }
                 else if (x > pos.x && x < columns && y > pos.y && y < rows)
                 {
-                    _floorTileMap.SetTile(here, _floorTile);
-                    if (_wallTileMap.HasTile(here))
+                    _FloorTileMap.SetTile(here, _FloorTile);
+                    if (_WallTileMap.HasTile(here))
                     {
                         newRoom = UpdateRoomOverlaps(newRoom, here);
-                        _wallTileMap.SetTile(here, null);
+                        _WallTileMap.SetTile(here, null);
                     }
                     newRoom.roomFloors.Add(here);                   /*new TerrainTile(here, TileTypes.Floor)*/
                 }
             }
         }
-        _rooms.Add(newRoom);
+        _Rooms.Add(newRoom);
         if (newRoom.connected)
         {
-            connectedRooms.Add(newRoom);
+            _ConnectedRooms.Add(newRoom);
         }
         else
         {
-            notConnected.Add(newRoom);
+            _NotConnected.Add(newRoom);
         }
     }
 
@@ -105,14 +107,14 @@ public class LevelCreator : MonoBehaviour
         {
             int roomColumns = Random.Range(minSize, maxSize + 1);
             int roomRows = Random.Range(minSize, maxSize + 1);
-            Vector3Int roomPos = _gridPositions[Random.Range(0, _gridPositions.Count)];
+            Vector3Int roomPos = _GridPositions[Random.Range(0, _GridPositions.Count)];
             GenerateWallsAndFloors(roomPos, roomColumns + roomPos.x, roomRows + roomPos.y, false);
         }
     }
 
     private Room UpdateRoomOverlaps(Room newRoom, Vector3Int currentTile)
     {
-        foreach (Room room in _rooms)
+        foreach (Room room in _Rooms)
         {
             if (room.roomWalls.Contains(currentTile))
             {
@@ -120,8 +122,8 @@ public class LevelCreator : MonoBehaviour
                 room.roomFloors.Add(currentTile);
                 if (room.overlappingRoomGroup == 0)
                 {
-                    _overlappingGroupsCount++;
-                    room.overlappingRoomGroup = _overlappingGroupsCount;
+                    _OverlappingGroupsCount++;
+                    room.overlappingRoomGroup = _OverlappingGroupsCount;
                     newRoom.overlappingRoomGroup = room.overlappingRoomGroup;
                 }
                 else
@@ -136,7 +138,7 @@ public class LevelCreator : MonoBehaviour
     private void AddConnections()
     {
         List<int> overlapRooms = new List<int>();
-        foreach (Room room in _rooms)
+        foreach (Room room in _Rooms)
         {
             if (room.overlappingRoomGroup != 0)
             {
@@ -151,8 +153,8 @@ public class LevelCreator : MonoBehaviour
                 Vector3Int hallwayEnd = GetHallwayEndPoint();
                 CreateHallway(hallwayStart, hallwayEnd);
                 room.connected = true;
-                notConnected.Remove(room);
-                connectedRooms.Add(room);
+                _NotConnected.Remove(room);
+                _ConnectedRooms.Add(room);
             }
         }
     }
@@ -160,7 +162,7 @@ public class LevelCreator : MonoBehaviour
     private Vector3Int GetHallwayEndPoint()
     {
         Vector3Int endpoint;
-        Room connectedRoom = connectedRooms[Random.Range(0, connectedRooms.Count)];
+        Room connectedRoom = _ConnectedRooms[Random.Range(0, _ConnectedRooms.Count)];
         endpoint = connectedRoom.roomFloors[Random.Range(0, connectedRoom.roomFloors.Count)];
         return endpoint;
     }
@@ -258,15 +260,15 @@ public class LevelCreator : MonoBehaviour
 
     private void ReplaceWallWithFloor(Vector3Int tilePosition)
     {
-        _wallTileMap.SetTile(tilePosition, null);
-        _floorTileMap.SetTile(tilePosition, _floorTile);
+        _WallTileMap.SetTile(tilePosition, null);
+        _FloorTileMap.SetTile(tilePosition, _FloorTile);
     }
 
     private void FillEmptyWithWall(Vector3Int tilePosition)
     {
-        if (!_floorTileMap.HasTile(tilePosition))
+        if (!_FloorTileMap.HasTile(tilePosition))
         {
-            _wallTileMap.SetTile(tilePosition, _wallTile);
+            _WallTileMap.SetTile(tilePosition, _WallTile);
         }
     }
 }
