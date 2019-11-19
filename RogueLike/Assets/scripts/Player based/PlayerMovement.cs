@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool Occupied(int X, int Y)
     {
-        if (_WallTile.GetTile(new Vector3Int((int)gameObject.transform.position.x + X, (int)gameObject.transform.position.y + Y, 0)))
+        if (_WallTile.GetTile(new Vector3Int((int)gameObject.transform.position.x + X , (int)gameObject.transform.position.y + Y, 0)))
         {
             //Debug.Log("Tile:" + new Vector3Int((int)transform.position.x + X, (int)transform.position.y + Y, 0));
             
