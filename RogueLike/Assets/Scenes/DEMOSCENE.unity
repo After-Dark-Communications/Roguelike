@@ -1529,4 +1529,8 @@ MonoBehaviour:
   _FloorTile: {fileID: 11400000, guid: 6c8f7d6c76d22f2458e8c315e24e86ba, type: 2}
   _WallTileMap: {fileID: 1913521567}
   _FloorTileMap: {fileID: 1035170142}
-  _RoomSettings: {x: 10, y: 4, z: 10}
+  _MinRooms: 1
+  _MaxRooms: 10
+  _MinSize: 15
+  _MaxSize: 4
+  _AllowDiagonal: 1

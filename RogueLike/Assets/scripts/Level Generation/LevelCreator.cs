@@ -12,21 +12,47 @@ public class LevelCreator : MonoBehaviour
     [SerializeField] private Tile _FloorTile;
     [SerializeField] private Tilemap _WallTileMap;
     [SerializeField] private Tilemap _FloorTileMap;
-    [Tooltip("X:How many rooms |Y: Min size |Z: max size")]
-    [SerializeField] private Vector3Int _RoomSettings;
+    [SerializeField] private int _MinRooms = 1;
+    [SerializeField] private int _MaxRooms = 10;
+    [SerializeField] private int _MinSize = 3;
+    [SerializeField] private int _MaxSize = 10;
+    [SerializeField] private bool _AllowDiagonal = false;
 
+    private Vector3Int _RoomSettings;
     private List<Vector3Int> _GridPositions = new List<Vector3Int>();
     private List<Room> _Rooms = new List<Room>();
     private List<Room> _NotConnected = new List<Room>();
     private int _OverlappingGroupsCount = 0;
     private List<Room> _ConnectedRooms = new List<Room>();
     private int[] _MapBorders;
-    private List<Vector3Int> _AvailableOpenings = new List<Vector3Int>();
 
     void Awake()
     {
-        _Rooms.Clear();
         _MapBorders = new int[4] { 0 - _Columns / 2, 0 - _Rows / 2, _Columns / 2, _Rows / 2 };
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            RandomRoomSettings(_MinRooms, _MaxRooms, _MinSize, _MaxSize);
+        }
+    }
+
+    private void RandomRoomSettings(int minRooms, int maxRooms, int minSize, int maxSize)
+    {
+        int count = Random.Range(minRooms, maxRooms);
+        _RoomSettings = new Vector3Int(count, minSize, maxSize);
+        GenerateLevel();
+    }
+
+    private void GenerateLevel()
+    {
+        _FloorTileMap.ClearAllTiles();
+        _WallTileMap.ClearAllTiles();
+        _ConnectedRooms.Clear();
+        _NotConnected.Clear();
+        _Rooms.Clear();
         InitializeGrid();
         //GenerateEmptyFloor();
         GenerateRooms(_RoomSettings.x, _RoomSettings.y, _RoomSettings.z);
@@ -186,7 +212,7 @@ public class LevelCreator : MonoBehaviour
 
     private Vector3Int GetNextTile(Vector3Int currentPoint, Vector3Int endPoint, int distance)
     {
-        if (Random.value < 0.5f)
+        if (Random.value < 0.5f && _AllowDiagonal)
         {
             for (int direction = 0; direction < 4; direction++)
             {
