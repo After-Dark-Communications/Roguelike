@@ -7,8 +7,9 @@ using UnityEngine.Tilemaps;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _MoveDelay = .2f;
-    [SerializeField] private float _HorizontalMoveDistance = .25f;
-    [SerializeField] private float _VerticalMoveDistance = .5f;
+    [SerializeField] private float _HorizontalMoveDistance = 1f;
+    [SerializeField] private float _VerticalMoveDistance = 1f;
+    [SerializeField] private DEMO _Demo;
 
     private bool _permitMove = false;
     private bool _StartedCoroutine = false;
@@ -39,10 +40,10 @@ public class PlayerMovement : MonoBehaviour
         float X_Speed = Input.GetAxisRaw("Horizontal") * _HorizontalMoveDistance;
         float Y_Speed = Input.GetAxisRaw("Vertical") * _VerticalMoveDistance;
 
-        if (!Occupied((int)X_Speed, (int)Y_Speed))
+        if (!_Demo.Occupied((int)X_Speed, (int)Y_Speed, _WallTile, this.transform))
         {
             _newPos += new Vector3(X_Speed, Y_Speed);
-            gameObject.transform.position = _newPos + new Vector3(0,0,-1);
+            gameObject.transform.position = _newPos + new Vector3(0, 0, -1);
         }
         //else
         //{
@@ -50,19 +51,7 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
-    bool Occupied(int X, int Y)
-    {
-        if (_WallTile.GetTile(new Vector3Int((int)gameObject.transform.position.x + X , (int)gameObject.transform.position.y + Y, 0)))
-        {
-            //Debug.Log("Tile:" + new Vector3Int((int)transform.position.x + X, (int)transform.position.y + Y, 0));
-            
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+
 
     private IEnumerator Countdown()
     {
@@ -79,19 +68,6 @@ public class PlayerMovement : MonoBehaviour
         _StartedCoroutine = false;
     }
 }
-
-//☺ ♪ └ ╠ ← ╪ Ω ÷ ╢
-//☻ ♫ ┴ ═ ∟ ┘ δ ≈ ╖
-//♥ ☼ ┬ ╬ ↔ ┌ ∞ ° ╕
-//♦ ► ├ ╧ ▲ █ φ ∙ ╣
-//♣ ◄ ─ ╨ ▼ ▄ ε ╗ ║
-//♠ ↕ ┼ ╤ # ▌ ∩ ╝ ¤
-//• ‼ ╞ § ╥ ▐ ≡ ░ †
-//◘ ¶ ╟ ▬ ╙ ▀ ± ▒ ‡
-//○ ‰ ╚ ↨ ╘ µ ≥ ▓ ⌐
-//◙ ≈ ╔ ↑ ╒ τ ≤ │ ¬
-//♂ ╛ ╩ ↓ ╓ Φ ⌠ ┤ º
-//♀ ┐ ╦ → ╫ Θ ⌡ ╡ I
 
 //A B C D E F G H I J K L M N O P Q
 //R S T U V W X Y Z a b c d e f g h 

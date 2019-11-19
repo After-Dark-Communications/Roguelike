@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\DEMO\DEMO.cs" />
+    <Compile Include="Assets\scripts\DEMO\EnemyMoving.cs" />
     <Compile Include="Assets\scripts\DEMO\Pickup.cs" />
+    <Compile Include="Assets\scripts\DEMO\SpawnEnemies.cs" />
     <Compile Include="Assets\scripts\Level Generation\LevelCreator.cs" />
     <Compile Include="Assets\scripts\Level Generation\Room.cs" />
     <Compile Include="Assets\scripts\Level Generation\TerrainTile.cs" />

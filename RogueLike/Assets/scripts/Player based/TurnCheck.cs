@@ -9,8 +9,10 @@ public class TurnCheck : MonoBehaviour
     [SerializeField] private Camera _FieldCamera;
 
     private Vector2 _LastKnownPos;
-    [SerializeField]private Vector2 _CurrentPos;
-    [SerializeField]private Vector2 _ScreenSize;
+    [SerializeField] private Vector2 _CurrentPos;
+    [SerializeField] private Vector2 _ScreenSize;
+
+    internal bool _EnemyTurn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +27,18 @@ public class TurnCheck : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         _CurrentPos = _Player.transform.position;
 
         if (_LastKnownPos != _CurrentPos)
         {
             _LastKnownPos = _CurrentPos;
+            _EnemyTurn = true;
+        }
+        else
+        {
+            _EnemyTurn = false;
         }
 
     }
@@ -47,10 +54,5 @@ public class TurnCheck : MonoBehaviour
         {
             //Debug.Log("Found a \"Player\" object. Found Object: " + _Player);
         }
-    }
-
-    private void CamCheck()
-    {
-
     }
 }
