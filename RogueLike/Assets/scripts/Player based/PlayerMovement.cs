@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_permitMove)
             {
-                //MoveCharacter();
                 TryMove();
             }
             if (!_StartedCoroutine)
@@ -45,10 +44,10 @@ public class PlayerMovement : MonoBehaviour
             _newPos += new Vector3(X_Speed, Y_Speed);
             gameObject.transform.position = _newPos + new Vector3(0,0,-1);
         }
-        else
-        {
-            Debug.Log("You Buffoon, that's a wall!");
-        }
+        //else
+        //{
+        //    Debug.Log("You Buffoon, that's a wall!");
+        //}
     }
 
     bool Occupied(int X, int Y)
@@ -62,22 +61,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             return false;
-
         }
     }
-
-    //private void MoveCharacter()
-    //{
-    //    float X_Speed = Input.GetAxisRaw("Horizontal") * _HorizontalMoveDistance;
-    //    float Y_Speed = Input.GetAxisRaw("Vertical") * _VerticalMoveDistance;
-
-    //    newPos += new Vector2(X_Speed, Y_Speed);
-    //    //Debug.Log("newPos: " + newPos);
-    //    gameObject.transform.position = newPos;
-
-    //}
-
-
 
     private IEnumerator Countdown()
     {
