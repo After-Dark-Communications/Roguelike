@@ -189,9 +189,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 4530409788816073330, guid: a188854649e9f42428a377d60210a8c7,
-    type: 3}
-  m_Color: {r: 1, g: 0, b: 0.90488815, a: 1}
+  m_Sprite: {fileID: 146616747995681860, guid: 5a4bdaba991c1b340adde19baec49743, type: 3}
+  m_Color: {r: 1, g: 0.4117647, b: 0.7058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -401,8 +400,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 39638140}
+  - {fileID: 1216896109}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &487985394
 BoxCollider2D:
@@ -472,7 +472,7 @@ Transform:
   m_Children:
   - {fileID: 236992397}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &723533398
 GameObject:
@@ -553,7 +553,7 @@ Transform:
   m_Children:
   - {fileID: 2081002018}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771401262
 GameObject:
@@ -764,7 +764,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035170136
 GameObject:
@@ -963,7 +963,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -986,14 +986,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216896106}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2009633633}
   - {fileID: 771401263}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 487985393}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216896110
 MonoBehaviour:
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 8
+  m_AssetsPPU: 16
   m_RefResolutionX: 284
   m_RefResolutionY: 160
   m_UpscaleRT: 1
@@ -1385,7 +1385,7 @@ Transform:
   - {fileID: 1913521562}
   - {fileID: 1035170137}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081002017
 GameObject:
@@ -1497,6 +1497,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Player: {fileID: 0}
+  _FieldCamera: {fileID: 1216896108}
+  _CurrentPos: {x: 0, y: 0}
+  _ScreenSize: {x: 0, y: 0}
 --- !u!4 &2127144182
 Transform:
   m_ObjectHideFlags: 0
@@ -1525,8 +1528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Rows: 50
   _Columns: 50
-  _WallTile: {fileID: 11400000, guid: d6323ef1678be3248ab9cf94ebcc9b9c, type: 2}
-  _FloorTile: {fileID: 11400000, guid: 6c8f7d6c76d22f2458e8c315e24e86ba, type: 2}
+  _WallTile: {fileID: 11400000, guid: ceb6fbbfc3e322d4497580b2ec378a57, type: 2}
+  _FloorTile: {fileID: 11400000, guid: b2213ee766f2242438b03ed908832134, type: 2}
   _WallTileMap: {fileID: 1913521567}
   _FloorTileMap: {fileID: 1035170142}
   _RoomSettings: {x: 10, y: 4, z: 10}
