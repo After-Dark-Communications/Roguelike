@@ -5,21 +5,21 @@ using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioSource audioSrc;
-    private float musicVolume = 1f;
+    public AudioSource _AudioSrc;
+    private float _MusicVolume = 0.5f;
 
-    void Awake()
+    void start()
     {
-        audioSrc = GetComponent<AudioSource>();
+        _AudioSrc = GetComponent<AudioSource>();
     }
-
     void Update()
     {
-        audioSrc.volume = musicVolume;
+        _AudioSrc.volume = _MusicVolume;
     }
+
     public void SetVolume(float volume)
     {
-        musicVolume = volume;
+        _MusicVolume = volume;
     }
     public void SetQuality(int qualityIndex)
     {
