@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
             {
                 Vector3Int cell = _TM.WorldToCell(_Player.position);
                 _TM.SetTile(new Vector3Int((int)_TM.CellToWorld(cell).x, (int)_TM.CellToWorld(cell).y, (int)_TM.CellToWorld(cell).z), null);
-                //Debug.Log("Sucked it right up.");
+                Debug.Log("Picked up.");
             }
         }
     }
