@@ -5,12 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class DEMO : MonoBehaviour
 {
-    [SerializeField] private Transform _Plane;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _Plane.gameObject.SetActive(false);
-    }
+    //[SerializeField] private Transform _Plane;
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+        //_Plane.gameObject.SetActive(false);
+    //}
 
     internal bool Occupied(int X, int Y, Tilemap _WallTile, Transform go)
     {
