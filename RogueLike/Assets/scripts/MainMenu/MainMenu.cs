@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject settingsPanel;
+    [SerializeField] private GameObject settingsPanel;
 
     public void StartGame()
     {
