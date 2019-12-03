@@ -411,9 +411,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 39638140}
-  - {fileID: 1216896109}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &487985394
 BoxCollider2D:
@@ -483,7 +482,7 @@ Transform:
   m_Children:
   - {fileID: 236992397}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &723533398
 GameObject:
@@ -564,7 +563,7 @@ Transform:
   m_Children:
   - {fileID: 2081002018}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771401262
 GameObject:
@@ -775,7 +774,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1035170136
 GameObject:
@@ -932,6 +931,7 @@ GameObject:
   - component: {fileID: 1216896108}
   - component: {fileID: 1216896107}
   - component: {fileID: 1216896110}
+  - component: {fileID: 1216896111}
   m_Layer: 0
   m_Name: FieldCamera
   m_TagString: Untagged
@@ -1003,8 +1003,8 @@ Transform:
   m_Children:
   - {fileID: 2009633633}
   - {fileID: 771401263}
-  m_Father: {fileID: 487985393}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216896110
 MonoBehaviour:
@@ -1026,6 +1026,20 @@ MonoBehaviour:
   m_CropFrameX: 1
   m_CropFrameY: 1
   m_StretchFill: 0
+--- !u!114 &1216896111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216896106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529051bf8a6c8594aac96293b0f37f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ObjectToFollow: {fileID: 487985393}
+  _CamSpeed: 1
 --- !u!1 &1281000609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f56135c836e494daf398ac1c172a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Plane: {fileID: 1281000610}
 --- !u!1 &1553644030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1913521561
 GameObject:
@@ -1378,7 +1391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f56135c836e494daf398ac1c172a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Plane: {fileID: 2009633633}
 --- !u!23 &2009633635
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1468,7 +1480,7 @@ Transform:
   - {fileID: 1913521562}
   - {fileID: 1035170137}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081002017
 GameObject:

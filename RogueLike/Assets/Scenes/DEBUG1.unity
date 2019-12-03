@@ -397,7 +397,7 @@ MonoBehaviour:
   _MoveDelay: 0.2
   _HorizontalMoveDistance: 1
   _VerticalMoveDistance: 1
-  _Demo: {fileID: 2127144184}
+  _EnemyTag: Enemy
   _WallTile: {fileID: 1913521567}
 --- !u!4 &487985393
 Transform:
@@ -411,9 +411,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 39638140}
-  - {fileID: 1216896109}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &487985394
 BoxCollider2D:
@@ -483,65 +482,8 @@ Transform:
   m_Children:
   - {fileID: 236992397}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &771401262
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 771401263}
-  - component: {fileID: 771401264}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &771401263
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771401262}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1216896109}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &771401264
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771401262}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 26, y: 13}
-  m_EdgeRadius: 0
 --- !u!1 &1035170136
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +605,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: -2.7638929e+20, g: -2.7638929e+20, b: -2.7638929e+20, a: -2.7638929e+20}
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  m_Color: {r: 0.2712264, g: 0.5, b: 0.2862629, a: 1}
   m_Origin: {x: -11, y: -5, z: 0}
   m_Size: {x: 22, y: 12, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -697,6 +639,7 @@ GameObject:
   - component: {fileID: 1216896108}
   - component: {fileID: 1216896107}
   - component: {fileID: 1216896110}
+  - component: {fileID: 1216896111}
   m_Layer: 0
   m_Name: FieldCamera
   m_TagString: Untagged
@@ -767,9 +710,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2009633633}
-  - {fileID: 771401263}
-  m_Father: {fileID: 487985393}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216896110
 MonoBehaviour:
@@ -786,11 +728,25 @@ MonoBehaviour:
   m_AssetsPPU: 16
   m_RefResolutionX: 284
   m_RefResolutionY: 160
-  m_UpscaleRT: 1
-  m_PixelSnapping: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 1
   m_CropFrameX: 1
   m_CropFrameY: 1
   m_StretchFill: 0
+--- !u!114 &1216896111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216896106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529051bf8a6c8594aac96293b0f37f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ObjectToFollow: {fileID: 487985393}
+  _CamSpeed: 1.5
 --- !u!1 &1553644030
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,11 +776,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bbff8ab8e9d944b887227487ec2554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Demo: {fileID: 2127144184}
   _WallTile: {fileID: 1913521567}
   _GroundTile: {fileID: 1035170142}
   _TurnCheck: {fileID: 2127144181}
   _EnemyTag: Enemy
+  _PlayerTag: Player
   _SortingOrder: 10
   _EnemiesToSpawn: 15
   _EnemyColor: {r: 0, g: 0.6698113, b: 0.010211727, a: 1}
@@ -861,7 +817,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1913521561
 GameObject:
@@ -1140,7 +1096,7 @@ Transform:
   - {fileID: 1913521562}
   - {fileID: 1035170137}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2127144180
 GameObject:

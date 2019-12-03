@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using UnityEditor;
 using System;
 
-namespace Assets.scripts.CharacterCreation
-{
     public class BeginButton : MonoBehaviour
     {
         public InputField InputFieldName;
@@ -34,4 +32,3 @@ namespace Assets.scripts.CharacterCreation
             Player player = new Player(InputFieldName.text, DropDownClassSelect.value);
         }
     }
-}
