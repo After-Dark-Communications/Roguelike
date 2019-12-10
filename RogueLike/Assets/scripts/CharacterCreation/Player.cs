@@ -3,27 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Assets.scripts.CharacterCreation
-{
     public class Player : Being
     {
-        public int _ID;
-        public Enum _Class = null;
+        [SerializeField] private int _ID;
+        [SerializeField] private Enum _Class = null;
 
-        public int _Mana;
-        public int _Dex;
-        public int _Magic;
+        [SerializeField] private int _Mana;
+        [SerializeField] private int _Dex;
+        [SerializeField] private int _Magic;
 
-        public bool _Alive;
-        public int _LowestFloorReached;
-        public int _ExperienceLevel;
-        public int _Kills;
-        public int _Wealth;
-        public string _killedBy;
-        public DateTime _StartDate;
-        public DateTime _EndDate;
-        public int _GameVersion;
-        public Time _TimePlayed;
+        [SerializeField] private bool _Alive;
+        [SerializeField] private int _LowestFloorReached;
+        [SerializeField] private int _ExperienceLevel;
+        [SerializeField] private int _Kills;
+        [SerializeField] private int _Wealth;
+        [SerializeField] private string _killedBy;
+        [SerializeField] private DateTime _StartDate;
+        [SerializeField] private DateTime _EndDate;
+        [SerializeField] private int _GameVersion;
+        [SerializeField] private Time _TimePlayed;
 
 
         public Player(string name, int classId)
@@ -82,4 +80,3 @@ namespace Assets.scripts.CharacterCreation
             //timeplayed is end date min startdate;
         }
     }
-}

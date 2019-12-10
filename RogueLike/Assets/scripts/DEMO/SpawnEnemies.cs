@@ -6,12 +6,12 @@ using UnityEngine.Tilemaps;
 public class SpawnEnemies : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private DEMO _Demo;
     [SerializeField] private Tilemap _WallTile;
     [SerializeField] private Tilemap _GroundTile;
     [SerializeField] private TurnCheck _TurnCheck;
     [Header("Enemy settings")]
     [SerializeField] private string _EnemyTag = "Enemy";
+    [SerializeField] private string _PlayerTag = "Player";
     [SerializeField] private int _SortingOrder;
     [SerializeField] private int _EnemiesToSpawn;
     [Header("sprite settings")]
@@ -50,11 +50,12 @@ public class SpawnEnemies : MonoBehaviour
             SpriteR.color = _EnemyColor;
             SpriteR.sortingOrder = _SortingOrder;
             //movement setup
-            Emov._Demo = _Demo;
             Emov._WallTile = _WallTile;
+            Emov._PlayerTag = _PlayerTag;
             //object setup
             Enemy.transform.SetParent(this.gameObject.transform);
             Enemy.tag = _EnemyTag;
+
 
             _SpawnedEnemies.Add(Enemy);
         }
