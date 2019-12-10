@@ -1,36 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Interact
 {
+    private List<Item> _PlayerInventory { get { return _PlayerInventory; } set { new List<Item>(); } }
+    private readonly byte _InventorySlots;
     private readonly string _ItemTag = "Item";
+
+    public Interact(List<Item> inventory, byte TotalSlots)
+    {
+        _PlayerInventory = inventory;
+        _InventorySlots = TotalSlots;
+    }
     /// <summary>
     /// Picks up the gear that the player is standing on.
     /// </summary>
-    public void PickupItem() //Important
+    /// <param name="pickup">Item to try and pick up.</param>
+    public void PickupItem(Item pickup) //Important
     {
-
+        if (_PlayerInventory.Count >= _InventorySlots)
+        {
+            Debug.Log("Inventory full");
+        }
+        else
+        {
+            _PlayerInventory.Add(pickup);
+        }
     }
     /// <summary>
     /// Try to open the door.
     /// </summary>
-    public void TryOpenDoor()
+    public void TryOpenDoor(Tile Doortile, bool locked = false, bool Haskey = true)
     {
+        //locked door: monochrome_288
+        //unlocked door: monochrome_291
+        //opened door: monochrome_290
+        if (locked && !Haskey)
+        {
+            Debug.Log("no key, no entry.");
+        }
+        else if (locked && Haskey)
+        {
+            Tile.Destroy(Doortile);
 
-    }
-    /// <summary>
-    /// Close an opened door.
-    /// </summary>
-    public void CloseDoor() //Slam door?
-    {
-
+        }
+        else if (!locked)
+        {
+            Tile.Destroy(Doortile);
+        }
     }
     /// <summary>
     /// Try to open a chest.
     /// </summary>
     public void TryOpenChest()
     {
+        //chest: monochrome_200
         //DESTROY CHEST ON EXECUTE FUNCTION
     }
     /// <summary>
@@ -79,7 +105,7 @@ public class Interact
     /// <summary>
     /// Uses the item.
     /// </summary>
-    public void UseItem()//Item item)//Important
+    public void UseItem(Item item)//Important
     {
 
     }
@@ -94,7 +120,7 @@ public class Interact
     /// Sell the selected item.  
     /// </summary>
     /// <param name="ItemValue">The value of the item being sold.</param>
-    public void SellItem(int ItemValue)
+    public void SellItem(int ItemValue, Item itemToSell)
     {
 
     }
@@ -102,18 +128,11 @@ public class Interact
     /// Buys the selected item.
     /// </summary>
     /// <param name="ItemValue">The value of the item being bought.</param>
-    public void BuyItem(int ItemValue)
+    public void BuyItem(int ItemValue, Item itemToBuy)
     {
 
     }
-    /// <summary>
-    /// Creates a radius of noise for the enemies to go towards if heard.
-    /// </summary>
-    /// <param name="ProducedNoise">How much noise the object would make.</param>
-    public void ProduceNoise(int ProducedNoise)
-    {
 
-    }
     /// <summary>
     /// wether or not the item can be unequiped.
     /// </summary>
@@ -142,4 +161,9 @@ public class Interact
         return true;
     }
 
+}
+
+public class Item
+{
+    public readonly string name;
 }
