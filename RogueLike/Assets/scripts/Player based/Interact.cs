@@ -162,8 +162,3 @@ public class Interact
     }
 
 }
-
-public class Item
-{
-    public readonly string name;
-}
