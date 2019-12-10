@@ -5,20 +5,25 @@ using UnityEngine.Tilemaps;
 
 public class Interact
 {
-    private List<Item> _PlayerInventory { get { return _PlayerInventory; } set { new List<Item>(); } }
+    private List<GameObject> _PlayerInventory { get { return _PlayerInventory; } set { new List<Item>(); } }
     private readonly byte _InventorySlots;
     private readonly string _ItemTag = "Item";
 
-    public Interact(List<Item> inventory, byte TotalSlots)
+    public Interact(List<GameObject> inventory, byte TotalSlots)
     {
         _PlayerInventory = inventory;
         _InventorySlots = TotalSlots;
+    }
+    public Interact(byte TotalSlots)
+    {
+        _InventorySlots = 5;
+        _PlayerInventory = new List<GameObject>();
     }
     /// <summary>
     /// Picks up the gear that the player is standing on.
     /// </summary>
     /// <param name="pickup">Item to try and pick up.</param>
-    public void PickupItem(Item pickup) //Important
+    public void PickupItem(GameObject pickup) //Important
     {
         if (_PlayerInventory.Count >= _InventorySlots)
         {
@@ -27,6 +32,17 @@ public class Interact
         else
         {
             _PlayerInventory.Add(pickup);
+        }
+    }
+    public void PickupItem(GameObject pickup, List<GameObject> Inventory)
+    {
+        if (Inventory.Count >= 5)
+        {
+            Debug.Log("Inventory full");
+        }
+        else
+        {
+            Inventory.Add(pickup);
         }
     }
     /// <summary>
@@ -43,12 +59,12 @@ public class Interact
         }
         else if (locked && Haskey)
         {
-            Tile.Destroy(Doortile);
+            //open
 
         }
         else if (!locked)
         {
-            Tile.Destroy(Doortile);
+            //open
         }
     }
     /// <summary>
@@ -161,9 +177,4 @@ public class Interact
         return true;
     }
 
-}
-
-public class Item
-{
-    public readonly string name;
 }

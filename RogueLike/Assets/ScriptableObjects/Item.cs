@@ -12,6 +12,7 @@ public class Item : ScriptableObject
     [SerializeField] private uint requirementLevel;
     [SerializeField] private byte maxStack;
     [SerializeField] private bool isConsumable;
+    public bool isArmor;
 
     public Sprite spriteImage;
     public Color spriteColor = new Color(1, 1, 1, 1);

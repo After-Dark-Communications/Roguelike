@@ -8,8 +8,7 @@ public class SpawnItems : MonoBehaviour
     [SerializeField] private Tilemap _GroundTile;
 
     [Header("Item settings")]
-    [SerializeField] private int _ItemsToSpawn;
-    [SerializeField] private Item item;
+    [SerializeField] private List<SpawnItem> _SpawnItem = new List<SpawnItem>();
     //[SerializeField] private ItemGear itemGear;
     //[SerializeField] private ItemConsumable itemConsumable; // TODO: Also do the consumables
 
@@ -30,21 +29,24 @@ public class SpawnItems : MonoBehaviour
 
     private void SpawnItem()
     {
-        for (int i = 0; i < _ItemsToSpawn; i++)
+        for (int i = 0; i < _SpawnItem.Count; i++)
         {
-            GameObject Item = new GameObject();
-            Item.name = item.name + i;
-            SpriteRenderer SpriteR = Item.AddComponent<SpriteRenderer>();
-            //sprite setup
-            SpriteR.sprite = item.spriteImage;
-            SpriteR.color = item.spriteColor;
-            SpriteR.sortingOrder = item.sortingOrder;
-            //object setup
-            Item.transform.SetParent(this.gameObject.transform);
-            Item.tag = item.itemTag;
-            Item.AddComponent<BoxCollider2D>().isTrigger = true;
-            Item.AddComponent<Pickup>();
-            _SpawnedItems.Add(Item);
+            for (int p = 0; p < _SpawnItem[i]._ItemsToSpawn; p++)
+            {
+                GameObject Item = new GameObject();
+                Item.name = _SpawnItem[i].item.name + i;
+                SpriteRenderer SpriteR = Item.AddComponent<SpriteRenderer>();
+                //sprite setup
+                SpriteR.sprite = _SpawnItem[i].item.spriteImage;
+                SpriteR.color = _SpawnItem[i].item.spriteColor;
+                SpriteR.sortingOrder = _SpawnItem[i].item.sortingOrder;
+                //object setup
+                Item.transform.SetParent(this.gameObject.transform);
+                Item.tag = _SpawnItem[i].item.itemTag;
+                Item.AddComponent<BoxCollider2D>().isTrigger = true;
+                Item.AddComponent<Pickup>();
+                _SpawnedItems.Add(Item);
+            }
         }
     }
 
@@ -68,4 +70,11 @@ public class SpawnItems : MonoBehaviour
             Go.transform.position = Tiles[Random.Range(0, Tiles.Count)];
         }
     }
+}
+
+[System.Serializable]
+public class SpawnItem
+{
+    public int _ItemsToSpawn;
+    public Item item;
 }

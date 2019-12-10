@@ -6,11 +6,17 @@ using UnityEngine.Tilemaps;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] private KeyCode _PickUp = KeyCode.G;
-    [SerializeField] public Transform _Player;
-
+    public Transform _Player;
+    private Interact _Interact;
     void Start()
     {
         _Player = GameObject.Find("Player").transform;
+        _Interact = new Interact(5);
+    }
+
+    private void OnEnable()
+    {
+        _Interact = new Interact(5);
     }
 
     private void Update()
@@ -23,15 +29,14 @@ public class Pickup : MonoBehaviour
                     gameObject.transform.position.y == _Player.transform.position.y)
                 {
                     //Debug.Log("Item " + gameObject.name + " picked up.");
-                    PickUp();
+                    _Interact.PickupItem(PickUp());
                 }
             }
         }
     }
 
-    private void PickUp()
+    private GameObject PickUp()
     {
-        // TODO: Add to inventory
-        Destroy(gameObject);
+        return gameObject;
     }
 }
