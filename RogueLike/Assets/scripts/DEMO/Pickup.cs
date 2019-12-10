@@ -6,26 +6,32 @@ using UnityEngine.Tilemaps;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] private KeyCode _PickUp = KeyCode.G;
-    [SerializeField] private Transform _Player;
-    private Tilemap _TM;
+    [SerializeField] public Transform _Player;
 
-    private void Awake()
+    void Start()
     {
-        _TM = gameObject.GetComponent<Tilemap>();
+        _Player = GameObject.Find("Player").transform;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(_PickUp))
         {
-            TileBase CurPlayer = _TM.GetTile(new Vector3Int((int)_Player.position.x - 1, (int)_Player.position.y - 1, 0));
-            //Debug.Log(CurPlayer);
-            if (CurPlayer != null)
+            if (_Player != null)
             {
-                Vector3Int cell = _TM.WorldToCell(_Player.position);
-                _TM.SetTile(new Vector3Int((int)_TM.CellToWorld(cell).x, (int)_TM.CellToWorld(cell).y, (int)_TM.CellToWorld(cell).z), null);
-                Debug.Log("Picked up.");
+                if (gameObject.transform.position.x == _Player.transform.position.x &&
+                    gameObject.transform.position.y == _Player.transform.position.y)
+                {
+                    //Debug.Log("Item " + gameObject.name + " picked up.");
+                    PickUp();
+                }
             }
         }
+    }
+
+    private void PickUp()
+    {
+        // TODO: Add to inventory
+        Destroy(gameObject);
     }
 }
