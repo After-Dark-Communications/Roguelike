@@ -5,30 +5,36 @@ using System;
 
 public class Player : Being
 {
-    [SerializeField] private int _ID;
-    [SerializeField] private Enum _Class = null;
-
-    [SerializeField] private int _Mana;
-    [SerializeField] private int _Dex;
-    [SerializeField] private int _Magic;
-
-    [SerializeField] private bool _Alive;
-    [SerializeField] private int _LowestFloorReached;
-    [SerializeField] private int _ExperienceLevel;
-    [SerializeField] private int _Kills;
-    [SerializeField] private int _Wealth;
-    [SerializeField] private string _killedBy;
-    [SerializeField] private DateTime _StartDate;
-    [SerializeField] private DateTime _EndDate;
-    [SerializeField] private int _GameVersion;
-    [SerializeField] private Time _TimePlayed;
-
-    public byte gearSlotWeapon = 37;
-    public byte gearSlotArmor = 38;
-    Item[] inventory = new Item[38];
+    //Unity Settings
+    [SerializeField] private SpawnItems _itemSpawner;
+    [SerializeField] private KeyCode _PickUp = KeyCode.G;
+    //Basics
+    public readonly int _ID;
+    public readonly Enum _Class = null;
+    //Stats
+    public int _Mana;
+    public int _Dex;
+    public int _Magic;
+    //High-Score
+    public bool _Alive;
+    public int _LowestFloorReached;
+    public int _ExperienceLevel;
+    public int _Kills;
+    public int _Wealth;
+    public string _killedBy;
+    public readonly DateTime _StartDate;
+    public DateTime _EndDate;
+    public int _GameVersion;
+    public Time _TimePlayed;
+    //Inventory
+    Interact _interact;
+    public readonly byte gearSlotWeapon = 37;
+    public readonly byte gearSlotArmor = 38;
+    public Item[] _inventory;
 
     public Player(string name, int classId)
     {
+
         _ID = 1; //.txt?
         _Class = (PlayerClassEnum)classId;
         _Name = name;
@@ -43,7 +49,7 @@ public class Player : Being
         _Experience = 0;
         _Gold = 10;
 
-        if(_Class.Equals(PlayerClassEnum.Warrior))
+        if (_Class.Equals(PlayerClassEnum.Warrior))
         {
             _Strength = _Strength + 1;
         }
@@ -64,51 +70,48 @@ public class Player : Being
         _StartDate = DateTime.Now;
         _GameVersion = 0; //GetGameVersion
     }
-
-    public void PickUp()
+    private void Awake()
     {
-
+        _interact = new Interact();
+        _inventory = new Item[6];
     }
-
-    public void LevelUp()
+    private void Update()
     {
-
-    }
-
-    /// <summary>
-    /// Equip an item, on specific slot
-    /// </summary>
-    /// <param name="itemSlot"></param>
-    /// <param name="item"></param>
-    public void PickUpItem(Item item)
-    {
-        int openArray = 0;
-
-        for (int i = 0; i < inventory.Length; i++)
+        if (Input.GetKeyDown(_PickUp))
         {
-            if (inventory[i] == null)
+            PickUpItem();
+        }
+    }
+
+    private void LevelUp()
+    {
+
+    }
+    private void PickUpItem()
+    {
+        byte size = (byte)(_inventory.Length - 2);
+        foreach (GameObject go in _itemSpawner._SpawnedGo)
+        {
+            if (go.transform.position.x == gameObject.transform.position.x && go.transform.position.y == gameObject.transform.position.y && go.activeSelf)
             {
-                openArray = i;
-                break;
+                _interact.PickupItem(go, _inventory, size);
+                return;
             }
         }
-        inventory[openArray] = item;
     }
-    /// <summary>
-    /// Equip an item
-    /// </summary>
-    /// <param name="item"></param>
-    public void EquipItem(Item item)
+
+    private void EquipItem(Item item)
     {
         byte assingedItemSlot = 0;
         if (!item.isArmor)
         {
             assingedItemSlot = gearSlotWeapon;
-        } else
+        }
+        else
         {
             assingedItemSlot = gearSlotArmor;
         }
-        inventory[assingedItemSlot] = item;
+        _inventory[assingedItemSlot] = item;
     }
 
     new public void Die()

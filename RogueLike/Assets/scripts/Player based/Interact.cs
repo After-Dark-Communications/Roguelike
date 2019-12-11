@@ -5,44 +5,42 @@ using UnityEngine.Tilemaps;
 
 public class Interact
 {
-    private List<GameObject> _PlayerInventory { get { return _PlayerInventory; } set { new List<Item>(); } }
-    private readonly byte _InventorySlots;
-    private readonly string _ItemTag = "Item";
 
-    public Interact(List<GameObject> inventory, byte TotalSlots)
-    {
-        _PlayerInventory = inventory;
-        _InventorySlots = TotalSlots;
-    }
-    public Interact(byte TotalSlots)
-    {
-        _InventorySlots = 5;
-        _PlayerInventory = new List<GameObject>();
-    }
+    private readonly string _ItemTag = "Item";
     /// <summary>
     /// Picks up the gear that the player is standing on.
     /// </summary>
     /// <param name="pickup">Item to try and pick up.</param>
-    public void PickupItem(GameObject pickup) //Important
+    /// <param name="_PlayerInventory">The players inventory.</param>
+    /// <param name="_InventorySlots">How many slots the inventory has for items.(default of 36)</param>
+    public void PickupItem(GameObject pickup, Item[] _PlayerInventory, byte _InventorySlots = 36) //Important
     {
-        if (_PlayerInventory.Count >= _InventorySlots)
+        int FreeSlots = 0;
+        for (int i = 0; i < _PlayerInventory.Length - 2; i++)
         {
-            Debug.Log("Inventory full");
+            if (_PlayerInventory[i] == null)
+            {
+                FreeSlots++;
+            }
+        }
+
+        if (FreeSlots >= 1)
+        {
+            for (int i = 0; i < _PlayerInventory.Length - 2; i++)
+            {
+                if (_PlayerInventory[i] == null)
+                {
+                    Item item = pickup.GetComponent<Pickup>()._item;
+                    _PlayerInventory[i] = item;
+                    Debug.Log("picked up " + pickup.name);
+                    pickup.SetActive(false);
+                    break;
+                }
+            }
         }
         else
         {
-            _PlayerInventory.Add(pickup);
-        }
-    }
-    public void PickupItem(GameObject pickup, List<GameObject> Inventory)
-    {
-        if (Inventory.Count >= 5)
-        {
             Debug.Log("Inventory full");
-        }
-        else
-        {
-            Inventory.Add(pickup);
         }
     }
     /// <summary>
@@ -147,6 +145,18 @@ public class Interact
     public void BuyItem(int ItemValue, Item itemToBuy)
     {
 
+    }
+
+    public bool CanBuy(int Money, int ItemPrice)
+    {
+        if (ItemPrice > Money)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /// <summary>

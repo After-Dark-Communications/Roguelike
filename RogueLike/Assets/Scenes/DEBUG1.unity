@@ -289,7 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53537f7bdadd5645a3fab4524c281c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ID: 0
+  _itemSpawner: {fileID: 1743967136}
+  _PickUp: 103
   _Mana: 0
   _Dex: 0
   _Magic: 0
@@ -300,6 +301,7 @@ MonoBehaviour:
   _Wealth: 0
   _killedBy: 
   _GameVersion: 0
+  _inventory: []
 --- !u!1 &1035170136
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,16 +814,23 @@ MonoBehaviour:
   _SpawnItem:
   - _ItemsToSpawn: 5
     item: {fileID: 11400000, guid: 192e0b37eb19f114caf847b682f1a1d1, type: 2}
+    pos: {fileID: 0}
   - _ItemsToSpawn: 2
     item: {fileID: 11400000, guid: 4caf45b1263e2964e8da32b31a12fcbc, type: 2}
-  - _ItemsToSpawn: 1
+    pos: {fileID: 0}
+  - _ItemsToSpawn: 12
     item: {fileID: 11400000, guid: b68ac5f9f5649584f91d40c45012267c, type: 2}
+    pos: {fileID: 0}
   - _ItemsToSpawn: 10
     item: {fileID: 11400000, guid: b88346c3513df5642af918f821338208, type: 2}
+    pos: {fileID: 0}
   - _ItemsToSpawn: 3
     item: {fileID: 11400000, guid: f19843c638010ba40b4a7bf4f847b614, type: 2}
+    pos: {fileID: 0}
   - _ItemsToSpawn: 5
     item: {fileID: 11400000, guid: ba28183e6d9ebf748b00cd78e0095329, type: 2}
+    pos: {fileID: 0}
+  _SpawnedGo: []
 --- !u!156049354 &1743967137
 Grid:
   m_ObjectHideFlags: 0
