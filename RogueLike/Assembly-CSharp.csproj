@@ -70,6 +70,7 @@
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\InventoryItemsDisplay.cs" />
     <Compile Include="Assets\ScriptableObjects\Item.cs" />
     <Compile Include="Assets\scripts\CharacterCreation\BeginButton.cs" />
     <Compile Include="Assets\scripts\CharacterCreation\Being.cs" />
