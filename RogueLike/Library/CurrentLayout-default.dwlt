@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 180
+  controlID: 142
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 494}
   m_MaxSize: {x: 14006, y: 14044}
   vertical: 1
-  controlID: 68
+  controlID: 143
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -434,8 +434,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
+      m_SelectedIDs: 6a490000
+      m_LastClickedID: 18794
       m_ExpandedIDs: 66fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -496,9 +496,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.5475141, y: 2.232477, z: -11.625}
+    m_Target: {x: 0.36619794, y: 1.1136743, z: -13.46875}
     speed: 2
-    m_Value: {x: 1.5475141, y: 2.232477, z: -11.625}
+    m_Value: {x: 0.36619794, y: 1.1136743, z: -13.46875}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -531,9 +531,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 27.307358
+    m_Target: 4.959513
     speed: 2
-    m_Value: 27.307358
+    m_Value: 4.959513
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -624,19 +624,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ScriptableObjects/Items/Gear
+    - Assets/ScriptableObjects/Items/Consumable
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/ScriptableObjects/Items/Gear
+  - Assets/ScriptableObjects/Items/Consumable
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\maatwerk projecten\proftaak\Roguelike\RogueLike
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 74}
-    m_SelectedIDs: b0390000
-    m_LastClickedID: 14768
+    scrollPos: {x: 0, y: 106}
+    m_SelectedIDs: 66360000
+    m_LastClickedID: 13926
     m_ExpandedIDs: 00000000a42d0000c0320000084600007c48000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -693,7 +693,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300009a370000284d0000e23b0000
+    m_ExpandedInstanceIDs: c62300009a370000284d0000e23b0000c43b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

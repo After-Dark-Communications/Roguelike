@@ -66,22 +66,37 @@ public class Interact
     /// <summary>
     /// Try to open the door.
     /// </summary>
-    public void TryOpenDoor(Tile Doortile, bool locked = false, bool Haskey = true)
+    public void TryOpenDoor(Item[] Inventory, GameObject door, bool locked = false)
     {
         //locked door: monochrome_288
         //unlocked door: monochrome_291
         //opened door: monochrome_290
-        if (locked && !Haskey)
+        byte inventoryIndex = 0;
+        bool Haskey = false;
+        for (int i = 0; i < Inventory.Length - 2; i++)
+        {
+            if (Inventory[i]?.name == "Key") // does the same as if (Inventory[i] != null && Inventory[i].name == "Key")
+            {
+                Haskey = true;
+                inventoryIndex = (byte)i;
+                break;
+            }
+        }
+
+        if (locked && Haskey == false)
         {
             Debug.Log("no key, no entry.");
         }
-        else if (locked && Haskey)
+        else if (locked && Haskey == true)
         {
-            //open
+            //open door
+            door.SetActive(false);
+            Inventory[inventoryIndex] = null;
 
         }
         else if (!locked)
         {
+            door.SetActive(false);
             //open
         }
     }
@@ -113,19 +128,19 @@ public class Interact
     /// <summary>
     /// Returns wether the player can equip the gear or not.
     /// </summary>
-    /// <param name="_PlayerInventory">The players inventory.</param>
+    /// <param name="Inventory">The players inventory.</param>
     /// <param name="ItemToEquip">The Item to try and equip.</param>
     /// <param name="isArmor">Is the item to equip armor or not?</param>
     /// <returns>Returns wether the item can be equiped.</returns>
-    public bool CanEquip(Item[] _PlayerInventory, Pickup ItemToEquip, bool isArmor = false)
+    public bool CanEquip(Item[] Inventory, Pickup ItemToEquip, bool isArmor = false)
     {
         if (ItemToEquip._item.isConsumable == false)
         {
-            if (_PlayerInventory[_PlayerInventory.Length - 2] == null && isArmor == false)
+            if (Inventory[Inventory.Length - 2] == null && isArmor == false)
             {
                 return true;
             }
-            else if (_PlayerInventory[_PlayerInventory.Length - 1] == null && isArmor == true)
+            else if (Inventory[Inventory.Length - 1] == null && isArmor == true)
             {
                 return true;
             }
@@ -146,12 +161,12 @@ public class Interact
     /// </summary>
     /// <param name="OccupiedSlot">Is the slot occupied or not.</param>
     /// <param name="GearSlot">The slot to put the item in.</param>
-    public void EquipGear(GameObject pickup, Item[] _PlayerInventory, bool OccupiedSlot, byte GearSlot)//Important
+    public void EquipGear(GameObject pickup, Item[] Inventory, bool OccupiedSlot, byte GearSlot)//Important
     {
-        if (_PlayerInventory[GearSlot] == null)
+        if (Inventory[GearSlot] == null)
         {
             Item item = pickup.GetComponent<Pickup>()._item;
-            _PlayerInventory[GearSlot] = item;
+            Inventory[GearSlot] = item;
             Debug.Log("equiped " + pickup.name);
         }
     }
@@ -159,18 +174,24 @@ public class Interact
     /// Equips the gear in the specified slot, regardless of wether or not there is an item in it.
     /// </summary>
     /// <param name="GearSlot">The slot to put the item in.</param>
-    public void EquipGear(byte GearSlot)
+    /// <param name="Inventory">The players inventory.</param>
+    /// <param name="item">The item to put in the gear</param>
+    public void EquipGear(byte GearSlot, Item[] Inventory, Item item)
     {
-
+        Inventory[GearSlot] = null;
+        Inventory[GearSlot] = item;
     }
     /// <summary>
     /// Unequips the gear in the specified slot
     /// </summary>
     /// <param name="GearSlot">The slot that the gear is in.</param>
     /// <param name="DestroyItem">Wether or not the unequiped item will be destroyed.</param>
-    public void UnEquipGear(byte GearSlot, bool DestroyItem = false)//Important
+    public void UnEquipGear(byte GearSlot, Item[] Inventory)//Important
     {
+        for (int i = 0; i < Inventory.Length - 2; i++)
+        {
 
+        }
     }
     /// <summary>
     /// Uses the item.

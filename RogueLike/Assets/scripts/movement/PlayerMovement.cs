@@ -9,7 +9,6 @@ public class PlayerMovement : Being
     [SerializeField] private float _MoveDelay = .2f;
     [SerializeField] private float _HorizontalMoveDistance = 1f;
     [SerializeField] private float _VerticalMoveDistance = 1f;
-    [SerializeField] private string _EnemyTag = "Enemy";
     private bool _permitMove = false;
     private bool _StartedCoroutine = false;
     private Vector3 _newPos;

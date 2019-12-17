@@ -234,7 +234,6 @@ MonoBehaviour:
   _MoveDelay: 0.2
   _HorizontalMoveDistance: 1
   _VerticalMoveDistance: 1
-  _EnemyTag: Enemy
   _WallTile: {fileID: 1913521567}
 --- !u!4 &487985393
 Transform:
