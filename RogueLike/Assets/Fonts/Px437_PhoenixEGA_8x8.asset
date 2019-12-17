@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Px437_PhoenixEGA_8x8
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 1882890606
   material: {fileID: -3922125031267571352}
-  materialHashCode: 0
+  materialHashCode: -1637460187
   m_Version: 1.1.0
   m_SourceFontFileGUID: 6401dc56e8bbe0c408ebeb9c54e7d598
   m_SourceFontFile_EditorRef: {fileID: 0}
