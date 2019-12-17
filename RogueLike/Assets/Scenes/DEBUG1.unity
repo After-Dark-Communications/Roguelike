@@ -830,6 +830,9 @@ MonoBehaviour:
   - _ItemsToSpawn: 5
     item: {fileID: 11400000, guid: ba28183e6d9ebf748b00cd78e0095329, type: 2}
     pos: {fileID: 0}
+  - _ItemsToSpawn: 5
+    item: {fileID: 11400000, guid: a13bb1690f75a7e41939321c52f11056, type: 2}
+    pos: {fileID: 0}
   _SpawnedGo: []
 --- !u!156049354 &1743967137
 Grid:

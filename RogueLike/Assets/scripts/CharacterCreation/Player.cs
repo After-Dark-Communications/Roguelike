@@ -73,7 +73,7 @@ public class Player : Being
     private void Awake()
     {
         _interact = new Interact();
-        _inventory = new Item[6];
+        _inventory = new Item[38];
     }
     private void Update()
     {

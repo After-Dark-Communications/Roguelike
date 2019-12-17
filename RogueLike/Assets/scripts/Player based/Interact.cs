@@ -24,6 +24,26 @@ public class Interact
             }
         }
 
+        if (pickup.GetComponent<Pickup>()._item.isArmor == false)//equip weapon
+        {
+            if (CanEquip(_PlayerInventory, pickup.GetComponent<Pickup>()))
+            {
+                EquipGear(pickup, _PlayerInventory, false, (byte)(_PlayerInventory.Length - 2));
+                pickup.SetActive(false);
+                return;
+            }
+        }
+        else if (pickup.GetComponent<Pickup>()._item.isArmor == true)//equip armor
+        {
+            if (CanEquip(_PlayerInventory, pickup.GetComponent<Pickup>(), true))
+            {
+                EquipGear(pickup, _PlayerInventory, false, (byte)(_PlayerInventory.Length - 1));
+                pickup.SetActive(false);
+                return;
+            }
+        }
+
+
         if (FreeSlots >= 1)
         {
             for (int i = 0; i < _PlayerInventory.Length - 2; i++)
@@ -74,12 +94,12 @@ public class Interact
         //DESTROY CHEST ON EXECUTE FUNCTION
     }
     /// <summary>
-    /// Can the player equip the gear or not?
+    /// Is the player of high enough level equip the gear or not?
     /// </summary>
     /// <param name="PlayerLevel">The players current level</param>
     /// <param name="RequiredLevel">The level the player is required to be to equip the gear</param>
     /// <returns> returns wether or not the player is the right level to equip the gear</returns>
-    public bool CanEquip(int PlayerLevel, int RequiredLevel)
+    public bool CouldEquip(int PlayerLevel, int RequiredLevel)
     {
         if (RequiredLevel > PlayerLevel)
         {
@@ -91,13 +111,49 @@ public class Interact
         }
     }
     /// <summary>
+    /// Returns wether the player can equip the gear or not.
+    /// </summary>
+    /// <param name="_PlayerInventory">The players inventory.</param>
+    /// <param name="ItemToEquip">The Item to try and equip.</param>
+    /// <param name="isArmor">Is the item to equip armor or not?</param>
+    /// <returns>Returns wether the item can be equiped.</returns>
+    public bool CanEquip(Item[] _PlayerInventory, Pickup ItemToEquip, bool isArmor = false)
+    {
+        if (ItemToEquip._item.isConsumable == false)
+        {
+            if (_PlayerInventory[_PlayerInventory.Length - 2] == null && isArmor == false)
+            {
+                return true;
+            }
+            else if (_PlayerInventory[_PlayerInventory.Length - 1] == null && isArmor == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    /// <summary>
     /// Equip the gear in the specified slot and unequips the item in said slot if need be.
     /// </summary>
     /// <param name="OccupiedSlot">Is the slot occupied or not.</param>
     /// <param name="GearSlot">The slot to put the item in.</param>
-    public void EquipGear(bool OccupiedSlot, byte GearSlot)//Important
+    public void EquipGear(GameObject pickup, Item[] _PlayerInventory, bool OccupiedSlot, byte GearSlot)//Important
     {
-
+        if (_PlayerInventory[GearSlot] == null)
+        {
+            Item item = pickup.GetComponent<Pickup>()._item;
+            _PlayerInventory[GearSlot] = item;
+            Debug.Log("equiped " + pickup.name);
+        }
     }
     /// <summary>
     /// Equips the gear in the specified slot, regardless of wether or not there is an item in it.
