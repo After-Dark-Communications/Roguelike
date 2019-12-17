@@ -14,6 +14,7 @@ public class LevelCreator : MonoBehaviour
     [SerializeField] private Tilemap _FloorTileMap;
     [Tooltip("X:How many rooms |Y: Min size |Z: max size")]
     [SerializeField] private Vector3Int _RoomSettings;
+    [SerializeField] private GameObject _Door;
 
     private List<Vector3Int> _GridPositions = new List<Vector3Int>();
     private List<Room> _Rooms = new List<Room>();
@@ -45,10 +46,10 @@ public class LevelCreator : MonoBehaviour
         }
     }
 
-    private void GenerateEmptyFloor()
-    {
-        GenerateWallsAndFloors(new Vector3Int(_MapBorders[0], _MapBorders[1], 0), _MapBorders[2], _MapBorders[3], true);
-    }
+    //private void GenerateEmptyFloor()
+    //{
+    //    GenerateWallsAndFloors(new Vector3Int(_MapBorders[0], _MapBorders[1], 0), _MapBorders[2], _MapBorders[3], true);
+    //}
 
     private void GenerateWallsAndFloors(Vector3Int pos, int columns, int rows, bool playerRoom)
     {
@@ -172,6 +173,7 @@ public class LevelCreator : MonoBehaviour
         int distance = ManhattanDistance(start, end);
         Vector3Int currentPoint = start;
         ReplaceWallWithFloor(currentPoint);
+        AddDoorToRoom(currentPoint);
         while (distance > 0)
         {
             for (int dir = 0; dir < 8; dir++)
@@ -262,6 +264,11 @@ public class LevelCreator : MonoBehaviour
     {
         _WallTileMap.SetTile(tilePosition, null);
         _FloorTileMap.SetTile(tilePosition, _FloorTile);
+    }
+
+    private void AddDoorToRoom(Vector3Int tilePosition)
+    {
+        GameObject.Instantiate(_Door, tilePosition, Quaternion.identity);
     }
 
     private void FillEmptyWithWall(Vector3Int tilePosition)

@@ -1151,7 +1151,6 @@ GameObject:
   - component: {fileID: 2127144182}
   - component: {fileID: 2127144181}
   - component: {fileID: 2127144183}
-  - component: {fileID: 2127144184}
   m_Layer: 0
   m_Name: Handler
   m_TagString: Untagged
@@ -1208,15 +1207,4 @@ MonoBehaviour:
   _WallTileMap: {fileID: 1913521567}
   _FloorTileMap: {fileID: 1035170142}
   _RoomSettings: {x: 10, y: 4, z: 10}
---- !u!114 &2127144184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127144180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f56135c836e494daf398ac1c172a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _Door: {fileID: 2534639704908389819, guid: 44884c6bb53b88d47b9e8871cd143b72, type: 3}
