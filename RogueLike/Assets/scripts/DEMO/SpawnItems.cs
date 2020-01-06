@@ -55,6 +55,7 @@ public class SpawnItems : MonoBehaviour
     {
         List<Vector3> Tiles = new List<Vector3>();
 
+        // TODO: these -50 and 50 values should not be hardcoded, find a way to get the map size from levelgeneration
         for (int x = -50; x < 50; x++)
         {
             for (int y = -50; y < 50; y++)
