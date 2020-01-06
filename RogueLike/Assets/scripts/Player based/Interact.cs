@@ -185,19 +185,64 @@ public class Interact
     /// Unequips the gear in the specified slot
     /// </summary>
     /// <param name="GearSlot">The slot that the gear is in.</param>
-    /// <param name="DestroyItem">Wether or not the unequiped item will be destroyed.</param>
+    /// <param name="Inventory">The players inventory.</param>
     public void UnEquipGear(byte GearSlot, Item[] Inventory)//Important
     {
+        Item itemToUnEquip = Inventory[GearSlot];
         for (int i = 0; i < Inventory.Length - 2; i++)
         {
-
+            if (Inventory[i] == null)
+            {
+                Inventory[i] = itemToUnEquip;
+                Inventory[GearSlot] = null;
+                Debug.Log("Unequiped item: " + itemToUnEquip.name);
+                break;
+            }
+            else
+            {
+                Debug.Log("Inventory full, can't unequip");
+            }
         }
     }
     /// <summary>
     /// Uses the item.
     /// </summary>
-    public void UseItem(Item item)//Important
+    public void UseItem(Item item, Player player)//Important
     {
+        /* TODO:
+         * public int dealDamage;
+         * public byte range;
+         */
+
+        if (item.opensDoor)
+        {
+            // Open Door
+        }
+        player._Experience += item.giveExpFlat;
+        player._ExperienceLevel += item.giveLevel;
+        player._Wealth += item.giveGold;
+        
+        player._MaxHealth += item.increaseMaxHealth;
+        player._MaxMana += item.increaseMaxMana;
+        player._Strength += item.modifyStrength;
+        player._Dex += item.modifyDex;
+        player._Magic += item.modifyMagic;
+
+        if ((player._Health += item.restoreHealth) > player._MaxHealth)
+        {
+            player._Health = player._MaxHealth;
+        } else
+        {
+            player._Health += item.restoreHealth;
+        }
+        if ((player._Mana += item.restoreHealth) > player._MaxMana)
+        {
+            player._Mana = player._MaxMana;
+        }
+        else
+        {
+            player._Mana += item.restoreMana;
+        }
 
     }
     /// <summary>
@@ -218,10 +263,26 @@ public class Interact
     /// <summary>
     /// Buys the selected item.
     /// </summary>
-    /// <param name="ItemValue">The value of the item being bought.</param>
-    public void BuyItem(int ItemValue, Item itemToBuy)
+    /// <param name="playerMoney">The amount of money the current player has</param>
+    /// <param name="itemValue">The value of the item being bought.</param>
+    /// <param name="itemToBuy">The Item the player is buying</param>
+    /// <param name="_PlayerInventory">The PlayerInventory</param>
+    public void BuyItem(int playerMoney, int itemValue, Item itemToBuy, Item[] _PlayerInventory)
     {
-
+        for (int i = 0; i < _PlayerInventory.Length - 2; i++)
+        {
+            if (_PlayerInventory[i] == null)
+            {
+                _PlayerInventory[i] = itemToBuy;
+                playerMoney -= itemValue;
+                Debug.Log("Bought a " + itemToBuy.name + " for " + itemValue + ". New Balance: " + playerMoney);
+                break;
+            }
+            else
+            {
+                Debug.Log("Inventory full");
+            }
+        }
     }
 
     public bool CanBuy(int Money, int ItemPrice)
