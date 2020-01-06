@@ -20,9 +20,12 @@ public class SpawnEnemies : MonoBehaviour
 
     private List<GameObject> _SpawnedEnemies = new List<GameObject>();
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         SpawnEnemy();
+    }
+    void Start()
+    {
         PlaceEnemy();
     }
 

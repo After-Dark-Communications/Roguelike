@@ -92,11 +92,12 @@ public class Interact
             //open door
             door.SetActive(false);
             Inventory[inventoryIndex] = null;
-
+            Debug.Log("Door Opened");
         }
         else if (!locked)
         {
             door.SetActive(false);
+            Debug.Log("Door Opened");
             //open
         }
     }

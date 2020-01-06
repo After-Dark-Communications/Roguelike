@@ -12,8 +12,10 @@ public class EnemyMoving : Being
 
     private Vector2 _PlayerPos;
     private Vector3 _newPos;
+    private GameObject[] _Doors;
     private void Start()
     {
+        _Doors = GameObject.FindGameObjectsWithTag("Door");
         _PlayerPos = GameObject.FindGameObjectWithTag(_PlayerTag).GetComponent<Transform>().position;
         _newPos = gameObject.transform.position;
     }
@@ -31,6 +33,14 @@ public class EnemyMoving : Being
     {
         if (!Occupied(X, Y, _WallTile, this.transform)) //check for wall
         {
+            for (int i = 0; i < _Doors.Length; i++)
+            {
+                Vector2 Doorpos = _Doors[i].transform.localPosition;
+                if (Doorpos == ((Vector2)_newPos + new Vector2(X,Y)) && _Doors[i].activeSelf)
+                {
+                    return;
+                }
+            }
             if (!CheckPlayer(X, Y)) //check for player
             {
                 _newPos += new Vector3(X, Y);
