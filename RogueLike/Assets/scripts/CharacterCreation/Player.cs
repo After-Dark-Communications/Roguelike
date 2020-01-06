@@ -18,7 +18,7 @@ public class Player : Being
     private bool _permitMove = false;
     private bool _StartedCoroutine = false;
     private Vector3 _newPos;
-    
+
     //Basics
     public readonly int _ID;
     public readonly Enum _Class = null;
@@ -45,7 +45,10 @@ public class Player : Being
     Interact _interact;
     public readonly byte gearSlotWeapon = 37;
     public readonly byte gearSlotArmor = 38;
-    public Item[] _inventory;
+    public Item[] _inventory; //default size should be 38
+    //(un)knowns
+    private GameObject[] _Doors;
+    private GameObject[] _Enemies;
 
     public Player(string name, int classId)
     {
@@ -88,11 +91,15 @@ public class Player : Being
     private void Awake()
     {
         _interact = new Interact();
-        _inventory = new Item[6];
+        _inventory = new Item[38];
+
     }
     private void Start()
     {
         _newPos = gameObject.transform.position;
+        _Doors = GameObject.FindGameObjectsWithTag("Door");
+        _Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //Debug.Log($"Doors: {_Doors.Length}| Enemies: {_Enemies.Length}");
     }
     private void Update()
     {
@@ -120,6 +127,12 @@ public class Player : Being
         }
     }
 
+    private void KillEnemy(GameObject enemy)
+    {
+        enemy.SetActive(false);
+        _Kills++;
+    }
+
     new public void Die()
     {
         _Alive = false;
@@ -128,7 +141,7 @@ public class Player : Being
         //timeplayed is end date min startdate;
     }
 
-    void GetMovementInput()
+    private void GetMovementInput()
     {
         //Debug.DrawLine(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), new Vector3Int((int)transform.position.x + (int)Input.GetAxisRaw("Horizontal"), (int)transform.position.y + (int)Input.GetAxisRaw("Vertical"), 0), Color.white);
         //if (Input.GetKeyDown(KeyCode.W))
@@ -155,6 +168,24 @@ public class Player : Being
 
         if (!Occupied((int)X_Speed, (int)Y_Speed, _WallTile, this.transform))
         {
+            for (int i = 0; i < _Doors.Length; i++)
+            {
+                Vector2 Doorpos = _Doors[i].transform.localPosition;
+                if (Doorpos == ((Vector2)_newPos + new Vector2(X_Speed, Y_Speed)) && _Doors[i].activeSelf)
+                {
+                    _interact.TryOpenDoor(gameObject.GetComponent<Player>()._inventory, _Doors[i]);
+                    return;
+                }
+            }
+            for (int i = 0; i < _Enemies.Length; i++)
+            {
+                Vector2 EnemyPos = _Enemies[i].transform.position;
+                if (EnemyPos == ((Vector2)_newPos + new Vector2(X_Speed, Y_Speed)) && _Enemies[i].activeSelf)
+                {
+                    KillEnemy(_Enemies[i]);
+                    return;
+                }
+            }
             _newPos += new Vector3(X_Speed, Y_Speed);
             gameObject.transform.position = _newPos + new Vector3(0, 0, -1);
         }

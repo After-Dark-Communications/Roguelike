@@ -32,7 +32,10 @@ public class LevelCreator : MonoBehaviour
         //GenerateEmptyFloor();
         GenerateRooms(_RoomSettings.x, _RoomSettings.y, _RoomSettings.z);
         AddConnections();
-        GenerateDoors();
+        if (_Door != null && _Doors != null)
+        {
+            GenerateDoors();
+        }
     }
 
     private void InitializeGrid()
