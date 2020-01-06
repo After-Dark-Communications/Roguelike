@@ -258,7 +258,7 @@ public class LevelCreator : MonoBehaviour
         }
     }
 
-    private void ReplaceWallWithFloor(Vector3Int tilePosition)
+    private void ReplaceWallWithFloor(Vector3Int tilePosition)//replace wall with door
     {
         _WallTileMap.SetTile(tilePosition, null);
         _FloorTileMap.SetTile(tilePosition, _FloorTile);

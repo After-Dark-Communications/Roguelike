@@ -8,13 +8,11 @@ public class SpawnItems : MonoBehaviour
     [SerializeField] private Tilemap _GroundTile;
 
     [Header("Item settings")]
-    [SerializeField] private int _ItemsToSpawn;
-    [SerializeField] private Item item;
+    [SerializeField] public List<SpawnItem> _SpawnItem = new List<SpawnItem>();
     //[SerializeField] private ItemGear itemGear;
     //[SerializeField] private ItemConsumable itemConsumable; // TODO: Also do the consumables
 
-    private List<GameObject> _SpawnedItems = new List<GameObject>();
-
+    [HideInInspector] public List<GameObject> _SpawnedGo = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -30,21 +28,26 @@ public class SpawnItems : MonoBehaviour
 
     private void SpawnItem()
     {
-        for (int i = 0; i < _ItemsToSpawn; i++)
+        for (int i = 0; i < _SpawnItem.Count; i++)
         {
-            GameObject Item = new GameObject();
-            Item.name = item.name + i;
-            SpriteRenderer SpriteR = Item.AddComponent<SpriteRenderer>();
-            //sprite setup
-            SpriteR.sprite = item.spriteImage;
-            SpriteR.color = item.spriteColor;
-            SpriteR.sortingOrder = item.sortingOrder;
-            //object setup
-            Item.transform.SetParent(this.gameObject.transform);
-            Item.tag = item.itemTag;
-            Item.AddComponent<BoxCollider2D>().isTrigger = true;
-            Item.AddComponent<Pickup>();
-            _SpawnedItems.Add(Item);
+            for (int p = 0; p < _SpawnItem[i]._ItemsToSpawn; p++)
+            {
+                GameObject Sitem = new GameObject();
+                Sitem.name = _SpawnItem[i].item.name + i;
+                SpriteRenderer SpriteR = Sitem.AddComponent<SpriteRenderer>();
+                //sprite setup
+                SpriteR.sprite = _SpawnItem[i].item.spriteImage;
+                SpriteR.color = _SpawnItem[i].item.spriteColor;
+                SpriteR.sortingOrder = _SpawnItem[i].item.sortingOrder;
+                //object setup
+                Sitem.transform.SetParent(this.gameObject.transform);
+                Sitem.tag = _SpawnItem[i].item.itemTag;
+                Sitem.AddComponent<BoxCollider2D>().isTrigger = true;
+                Pickup pick = Sitem.AddComponent<Pickup>();
+                pick._item = _SpawnItem[i].item;
+                _SpawnItem[i].pos = Sitem.transform;
+                _SpawnedGo.Add(Sitem);
+            }
         }
     }
 
@@ -56,16 +59,27 @@ public class SpawnItems : MonoBehaviour
         {
             for (int y = -50; y < 50; y++)
             {
-                if (_GroundTile.GetTile(new Vector3Int(x, y, 0)))
+                if (_GroundTile.GetTile(new Vector3Int(x, y, 0)) && (x != 0 && y != 0))
                 {
                     Tiles.Add(new Vector3(x, y));
                 }
             }
         }
 
-        foreach (GameObject Go in _SpawnedItems)
+
+        foreach (GameObject Go in _SpawnedGo)
         {
-            Go.transform.position = Tiles[Random.Range(0, Tiles.Count)];
+            int x = Random.Range(0, Tiles.Count);
+            Go.transform.position = Tiles[x];
+            Tiles.Remove(Tiles[x]);
         }
     }
+}
+
+[System.Serializable]
+public class SpawnItem
+{
+    public int _ItemsToSpawn;
+    public Item item;
+    [HideInInspector] public Transform pos;
 }

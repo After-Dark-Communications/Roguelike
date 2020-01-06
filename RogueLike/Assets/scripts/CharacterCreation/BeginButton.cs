@@ -4,31 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using System;
+using UnityEngine.SceneManagement;
 
-    public class BeginButton : MonoBehaviour
+public class BeginButton : MonoBehaviour
+{
+    public InputField InputFieldName;
+    public Dropdown DropDownClassSelect;
+
+    public void Start()
     {
-        public InputField InputFieldName;
-        public Dropdown DropDownClassSelect;
-
-        public void Start()
-        {
-            Dropdown.OptionData DOD0 = new Dropdown.OptionData("Class");
-            Dropdown.OptionData DOD1 = new Dropdown.OptionData(PlayerClassEnum.Warrior.ToString());
-            Dropdown.OptionData DOD2 = new Dropdown.OptionData(PlayerClassEnum.Mage.ToString());
-            Dropdown.OptionData DOD3 = new Dropdown.OptionData(PlayerClassEnum.Ranger.ToString());
-            DropDownClassSelect.options.Add(DOD0);
-            DropDownClassSelect.options.Add(DOD1);
-            DropDownClassSelect.options.Add(DOD2);
-            DropDownClassSelect.options.Add(DOD3);
-        }
-
-        public void ButtonClicked()
-        {
-            if (InputFieldName.text == "" || InputFieldName.text == "Name" || DropDownClassSelect.value.Equals("0") == true)
-            {
-                EditorUtility.DisplayDialog("Input Required", "Please make sure you have entered a name and a class!", "I understand and will do better next time", "I understand and will do better next time");
-                return;
-            }
-            Player player = new Player(InputFieldName.text, DropDownClassSelect.value);
-        }
+        DropDownClassSelect.AddOptions(CreateOptions());
     }
+    public void ButtonClicked()
+    {
+        if (InputFieldName.text == "" || InputFieldName.text == "Name" || DropDownClassSelect.value.Equals("0") == true)
+        {
+            //EditorUtility.DisplayDialog("Input Required", "Please make sure you have entered a name and a class!", "I understand and will do better next time", "I understand and will do better next time");
+            return;
+        }
+        Player player = new Player(InputFieldName.text, DropDownClassSelect.value);
+        SceneManager.LoadScene(2);
+    }
+
+    private List<Dropdown.OptionData> CreateOptions()
+    {
+        List<Dropdown.OptionData> TempList = new List<Dropdown.OptionData>();
+        Dropdown.OptionData DefaultDOD = new Dropdown.OptionData("Class");
+        TempList.Add(DefaultDOD);
+        foreach (string classes in Enum.GetNames(typeof(PlayerClassEnum)))
+        {
+            TempList.Add(new Dropdown.OptionData(classes));
+        }
+        Dropdown.OptionData HiddenDOD = new Dropdown.OptionData();
+        TempList.Add(HiddenDOD);
+        return TempList;
+    }
+}
