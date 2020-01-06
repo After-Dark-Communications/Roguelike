@@ -15,6 +15,7 @@ public class LevelCreator : MonoBehaviour
     [Tooltip("X:How many rooms |Y: Min size |Z: max size")]
     [SerializeField] private Vector3Int _RoomSettings;
     [SerializeField] private GameObject _Door;
+    [SerializeField] private GameObject _Doors;
 
     private List<Vector3Int> _GridPositions = new List<Vector3Int>();
     private List<Room> _Rooms = new List<Room>();
@@ -331,7 +332,7 @@ public class LevelCreator : MonoBehaviour
 
     private void AddDoorToRoom(Vector3Int tilePosition)
     {
-        GameObject.Instantiate(_Door, tilePosition, Quaternion.identity);
+        Instantiate(_Door, tilePosition, Quaternion.identity, _Doors.transform);
     }
 
     private void FillEmptyWithWall(Vector3Int tilePosition)
