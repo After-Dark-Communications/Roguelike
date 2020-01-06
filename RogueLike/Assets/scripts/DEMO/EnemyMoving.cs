@@ -11,9 +11,6 @@ public class EnemyMoving : Being
     public string _PlayerTag { private get; set; }
 
     private Vector2 _PlayerPos;
-    private float _HorizontalMoveDistance = 1f;
-    private float _VerticalMoveDistance = 1f;
-    private bool _StartedCoroutine = false;
     private Vector3 _newPos;
     private void Start()
     {
