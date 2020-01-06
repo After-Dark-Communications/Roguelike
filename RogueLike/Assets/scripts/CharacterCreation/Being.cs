@@ -6,10 +6,11 @@ using UnityEngine.Tilemaps;
 public class Being : MonoBehaviour
 {
     protected string _Name;
-    protected int _Health;
-    protected int _Strength;
+    public int _MaxHealth;
+    public int _Health;
+    public int _Strength;
     protected int _ArmorClass;
-    protected int _Experience;
+    public int _Experience;
     protected int _Gold;
 
     public void Move()

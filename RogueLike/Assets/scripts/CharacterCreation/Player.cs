@@ -12,6 +12,7 @@ public class Player : Being
     public readonly int _ID;
     public readonly Enum _Class = null;
     //Stats
+    public int _MaxMana;
     public int _Mana;
     public int _Dex;
     public int _Magic;
