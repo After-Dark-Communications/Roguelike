@@ -231,6 +231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b265c88904c7c48a11440b00e7ff0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _MaxHealth: 0
+  _Health: 0
+  _Strength: 0
+  _Experience: 0
   _MoveDelay: 0.2
   _HorizontalMoveDistance: 1
   _VerticalMoveDistance: 1
@@ -288,8 +292,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53537f7bdadd5645a3fab4524c281c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _MaxHealth: 0
+  _Health: 0
+  _Strength: 0
+  _Experience: 0
   _itemSpawner: {fileID: 1743967136}
   _PickUp: 103
+  _MaxMana: 0
   _Mana: 0
   _Dex: 0
   _Magic: 0
@@ -791,7 +800,7 @@ GameObject:
   - component: {fileID: 1743967137}
   - component: {fileID: 1743967136}
   m_Layer: 0
-  m_Name: Items (1)
+  m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

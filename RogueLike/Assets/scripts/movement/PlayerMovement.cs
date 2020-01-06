@@ -20,6 +20,8 @@ public class PlayerMovement : Being
     void Update()
     {
         //Debug.DrawLine(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), new Vector3Int((int)transform.position.x + (int)Input.GetAxisRaw("Horizontal"), (int)transform.position.y + (int)Input.GetAxisRaw("Vertical"), 0), Color.white);
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             if (_permitMove)
@@ -31,6 +33,8 @@ public class PlayerMovement : Being
                 StartCoroutine("Countdown");
             }
         }
+        //}
+
     }
 
     void TryMove() //attempt to move in a given direction, checks if there is a wall or not
