@@ -2754,7 +2754,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841012714}
-  - component: {fileID: 841012713}
   - component: {fileID: 841012712}
   m_Layer: 0
   m_Name: Player
@@ -2775,44 +2774,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53537f7bdadd5645a3fab4524c281c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxHealth: 10
-  _Health: 10
+  _MaxHealth: 8
+  _Health: 8
   _Strength: 5
   _Experience: 0
   _itemSpawner: {fileID: 234290476}
   _PickUp: 103
-  _MaxMana: 15
-  _Mana: 15
-  _Dex: 5
-  _Magic: 5
-  _Alive: 1
-  _LowestFloorReached: 1
-  _ExperienceLevel: 0
-  _Kills: 0
-  _Wealth: 0
-  _killedBy: 
-  _GameVersion: 0
-  _inventory: []
---- !u!114 &841012713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841012711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b265c88904c7c48a11440b00e7ff0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MaxHealth: 10
-  _Health: 10
-  _Strength: 5
-  _Experience: 0
   _MoveDelay: 0.2
   _HorizontalMoveDistance: 1
   _VerticalMoveDistance: 1
   _WallTile: {fileID: 98176696}
+  _MaxMana: 10
+  _Mana: 10
+  _Dex: 5
+  _Magic: 5
+  _Alive: 1
+  _LowestFloorReached: 0
+  _ExperienceLevel: 0
+  _Kills: 0
+  _Wealth: 10
+  _killedBy: 
+  _GameVersion: 0
+  _inventory: []
 --- !u!4 &841012714
 Transform:
   m_ObjectHideFlags: 0
@@ -3383,7 +3366,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
