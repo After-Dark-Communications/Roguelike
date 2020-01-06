@@ -22,7 +22,6 @@ public class LevelCreator : MonoBehaviour
     private int _OverlappingGroupsCount = 0;
     private List<Room> _ConnectedRooms = new List<Room>();
     private int[] _MapBorders;
-    private List<Vector3Int> _AvailableOpenings = new List<Vector3Int>();
 
     void Awake()
     {
@@ -32,6 +31,7 @@ public class LevelCreator : MonoBehaviour
         //GenerateEmptyFloor();
         GenerateRooms(_RoomSettings.x, _RoomSettings.y, _RoomSettings.z);
         AddConnections();
+        GenerateDoors();
     }
 
     private void InitializeGrid()
@@ -50,6 +50,20 @@ public class LevelCreator : MonoBehaviour
     //{
     //    GenerateWallsAndFloors(new Vector3Int(_MapBorders[0], _MapBorders[1], 0), _MapBorders[2], _MapBorders[3], true);
     //}
+
+    private void GenerateDoors()
+    {
+        foreach (Room room in _ConnectedRooms)
+        {
+            foreach (Vector3Int roomWall in room.roomWalls)
+            {
+                if (_FloorTileMap.GetTile(roomWall) && SuitableDoorway(roomWall) && NearbyFloors(roomWall) == 2 && !NearbyDoor(roomWall))
+                {
+                    AddDoorToRoom(roomWall);
+                }
+            }
+        }
+    }
 
     private void GenerateWallsAndFloors(Vector3Int pos, int columns, int rows, bool playerRoom)
     {
@@ -173,7 +187,7 @@ public class LevelCreator : MonoBehaviour
         int distance = ManhattanDistance(start, end);
         Vector3Int currentPoint = start;
         ReplaceWallWithFloor(currentPoint);
-        AddDoorToRoom(currentPoint);
+        //AddDoorToRoom(currentPoint);
         while (distance > 0)
         {
             for (int dir = 0; dir < 8; dir++)
@@ -260,10 +274,59 @@ public class LevelCreator : MonoBehaviour
         }
     }
 
-    private void ReplaceWallWithFloor(Vector3Int tilePosition)//replace wall with door
+    private void ReplaceWallWithFloor(Vector3Int tilePosition)
     {
         _WallTileMap.SetTile(tilePosition, null);
         _FloorTileMap.SetTile(tilePosition, _FloorTile);
+    }
+
+    private bool NearbyDoor(Vector3Int currentPosition)
+    {
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+        List<Vector3Int> doorLocations = new List<Vector3Int>();
+        for (int x = 0; x < doors.Length; x++)
+        {
+            doorLocations.Add(Vector3Int.RoundToInt(doors[x].transform.position));
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            Vector3Int nextPos = GetSurroundingTile(i, currentPosition);
+            if (doorLocations.Contains(nextPos)) return true;
+        }
+        return false;
+    }
+
+    private int NearbyFloors(Vector3Int currentPosition)
+    {
+        int floors = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3Int nextPos = GetCardinalTile(i, currentPosition);
+            if (_FloorTileMap.GetTile(nextPos))
+            {
+                floors++;
+            }
+        }
+        return floors;
+    }
+
+    private bool SuitableDoorway(Vector3Int currentPosition)
+    {
+        bool[] wallSpots = new bool[4];
+        for (int i = 0; i < 4; i++)
+        {
+            Vector3Int nextPos = GetCardinalTile(i, currentPosition);
+            if (_WallTileMap.GetTile(nextPos))
+            {
+                wallSpots[i] = true;
+            }
+            else wallSpots[i] = false;
+        }
+        if (wallSpots[0] == wallSpots[2] || wallSpots[1] == wallSpots[3])
+        {
+            return true;
+        }
+        return false;
     }
 
     private void AddDoorToRoom(Vector3Int tilePosition)
