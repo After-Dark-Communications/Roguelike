@@ -59,16 +59,19 @@ public class SpawnItems : MonoBehaviour
         {
             for (int y = -50; y < 50; y++)
             {
-                if (_GroundTile.GetTile(new Vector3Int(x, y, 0)))
+                if (_GroundTile.GetTile(new Vector3Int(x, y, 0)) && (x != 0 && y != 0))
                 {
                     Tiles.Add(new Vector3(x, y));
                 }
             }
         }
 
+
         foreach (GameObject Go in _SpawnedGo)
         {
-            Go.transform.position = Tiles[Random.Range(0, Tiles.Count)];
+            int x = Random.Range(0, Tiles.Count);
+            Go.transform.position = Tiles[x];
+            Tiles.Remove(Tiles[x]);
         }
     }
 }

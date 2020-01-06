@@ -52,15 +52,15 @@ public class Player : Being
 
         if (_Class.Equals(PlayerClassEnum.Warrior))
         {
-            _Strength = _Strength + 1;
+            _Strength += 1;
         }
         if (_Class.Equals(PlayerClassEnum.Mage))
         {
-            _Magic = _Magic + 1;
+            _Magic += 1;
         }
         if (_Class.Equals(PlayerClassEnum.Ranger))
         {
-            _Dex = _Dex + 1;
+            _Dex += 1;
         }
 
         _Alive = true;
@@ -84,10 +84,10 @@ public class Player : Being
         }
     }
 
-    private void LevelUp()
-    {
-
-    }
+    //private void LevelUp()
+    //{
+    //
+    //}
     private void PickUpItem()
     {
         byte size = (byte)(_inventory.Length - 2);
@@ -99,20 +99,6 @@ public class Player : Being
                 return;
             }
         }
-    }
-
-    private void EquipItem(Item item)
-    {
-        byte assingedItemSlot = 0;
-        if (!item.isArmor)
-        {
-            assingedItemSlot = gearSlotWeapon;
-        }
-        else
-        {
-            assingedItemSlot = gearSlotArmor;
-        }
-        _inventory[assingedItemSlot] = item;
     }
 
     new public void Die()

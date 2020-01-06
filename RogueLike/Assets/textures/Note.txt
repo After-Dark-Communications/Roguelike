@@ -1,4 +1,0 @@
-Horizontal movement is half of vertical movement.
-Current Pixels per unit is 32, which gives:
-	-a .5 vertical increase per space 
-	-a .25 horizontal increase per space.

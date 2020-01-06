@@ -1013,7 +1013,6 @@ GameObject:
   - component: {fileID: 2009633633}
   - component: {fileID: 2009633636}
   - component: {fileID: 2009633635}
-  - component: {fileID: 2009633634}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1035,18 +1034,6 @@ Transform:
   m_Father: {fileID: 1216896109}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2009633634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009633632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f56135c836e494daf398ac1c172a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &2009633635
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1150,7 +1137,6 @@ GameObject:
   - component: {fileID: 2127144182}
   - component: {fileID: 2127144181}
   - component: {fileID: 2127144183}
-  - component: {fileID: 2127144184}
   m_Layer: 0
   m_Name: Handler
   m_TagString: Untagged
@@ -1200,22 +1186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762160902297d5041b0a518a19ac6476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Rows: 50
-  _Columns: 50
+  _Rows: 20
+  _Columns: 20
   _WallTile: {fileID: 11400000, guid: 1fbdeb08c9cfbb041a8c5ce419813a63, type: 2}
   _FloorTile: {fileID: 11400000, guid: b65c344dd5bdc4841ace3102b134df2b, type: 2}
   _WallTileMap: {fileID: 1913521567}
   _FloorTileMap: {fileID: 1035170142}
   _RoomSettings: {x: 10, y: 4, z: 10}
---- !u!114 &2127144184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127144180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f56135c836e494daf398ac1c172a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
