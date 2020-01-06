@@ -13,9 +13,11 @@ public class PlayerMovement : Being
     private bool _StartedCoroutine = false;
     private Vector3 _newPos;
     [SerializeField] private Tilemap _WallTile;
+    private Interact interact;
     private void Start()
     {
         _newPos = gameObject.transform.position;
+        interact = new Interact();
     }
     void Update()
     {
@@ -44,6 +46,16 @@ public class PlayerMovement : Being
 
         if (!Occupied((int)X_Speed, (int)Y_Speed, _WallTile, this.transform))
         {
+            GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
+            for (int i = 0; i < doors.Length; i++)
+            {
+                if (doors[i].transform.position == (_newPos + new Vector3(X_Speed, Y_Speed)))
+                {
+                    interact.TryOpenDoor(gameObject.GetComponent<Player>()._inventory, doors[i]);
+                    return;
+                }
+            }
+
             _newPos += new Vector3(X_Speed, Y_Speed);
             gameObject.transform.position = _newPos + new Vector3(0, 0, -1);
         }

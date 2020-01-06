@@ -40,47 +40,5 @@ namespace Assets.scripts.Level_Generation
                 new Vector3Int(origin.x + columns - 1, origin.y + rows - 1, 0) 
             };
         }
-
-        //public List<Vector3Int> GetNonCornerWalls()
-        //{
-        //    List<Vector3Int> straightWalls = roomWalls;
-        //    foreach (Vector3Int corner in corners)
-        //    {
-        //        straightWalls.Remove(corner);
-        //    }
-        //    return straightWalls;
-        //}
-
-        //public void SetOpening(Vector3Int wallHole)
-        //{
-        //    if (roomWalls.Contains(new Vector3Int(wallHole.x + 1, wallHole.y, 0)))  // is there a wall to the left of the hole
-        //    {
-        //        // if true we know there must be another wall on the left
-        //        if (roomFloors.Contains(new Vector3Int(wallHole.x, wallHole.y + 1, 0)))    // is there a floor above the hole
-        //        {
-        //            // if true we know the hallway must be connected below the hole
-        //            openings.Add(new Vector3Int(wallHole.x, wallHole.y - 1, 0));
-        //        }
-        //        else
-        //        {
-        //            // if false we know the hallway must be connected above the hole
-        //            openings.Add(new Vector3Int(wallHole.x, wallHole.y + 1, 0));
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // if false we know the walls are above and below the hole
-        //        if (roomFloors.Contains(new Vector3Int(wallHole.x + 1, wallHole.y, 0))) // is there a floor to the right
-        //        {
-        //            // if true we know the hallway must be connected to the left of the hole
-        //            openings.Add(new Vector3Int(wallHole.x - 1, wallHole.y, 0));
-        //        }
-        //        else
-        //        {
-        //            // if false we know the hallway must be connected to the right of the hole
-        //            openings.Add(new Vector3Int(wallHole.x + 1, wallHole.y, 0));
-        //        }
-        //    }
-        //}
     }
 }
