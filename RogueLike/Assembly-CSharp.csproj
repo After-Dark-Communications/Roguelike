@@ -73,6 +73,7 @@
     <Compile Include="Assets\scripts\DEMO\SpawnItems.cs" />
     <Compile Include="Assets\scripts\Level Generation\Door.cs" />
     <Compile Include="Assets\scripts\Level Generation\LevelCreator.cs" />
+    <Compile Include="Assets\scripts\Level Generation\LevelProgression.cs" />
     <Compile Include="Assets\scripts\Level Generation\Room.cs" />
     <Compile Include="Assets\scripts\MainMenu\MainMenu.cs" />
     <Compile Include="Assets\scripts\MainMenu\MusicPlayerScript.cs" />

@@ -6,8 +6,8 @@ using Assets.scripts.Level_Generation;
 
 public class LevelCreator : MonoBehaviour
 {
-    [SerializeField] private int _Rows;
-    [SerializeField] private int _Columns;
+    public int _Rows;
+    public int _Columns;
     [SerializeField] private Tile _WallTile;
     [SerializeField] private Tile _FloorTile;
     [SerializeField] private Tilemap _WallTileMap;
