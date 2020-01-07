@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     [SerializeField] private byte maxStack;
     public bool isConsumable;
     public bool isArmor;
+    public bool isEquipped;
 
     public Sprite spriteImage;
     public Color spriteColor = new Color(1, 1, 1, 1);

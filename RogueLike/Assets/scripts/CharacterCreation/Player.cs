@@ -114,6 +114,7 @@ public class Player : Being
         {
             assingedItemSlot = gearSlotArmor;
         }
+        item.isEquipped = true;
         _inventory[assingedItemSlot] = item;
     }
 

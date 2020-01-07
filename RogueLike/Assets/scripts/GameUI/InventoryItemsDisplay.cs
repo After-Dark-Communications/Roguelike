@@ -8,7 +8,7 @@ public class InventoryItemsDisplay : MonoBehaviour
     [SerializeField] private Player _Player = null;
 
     private TextMeshProUGUI InventoryText;
-    private Item[] InventoryItems;
+    private List<Item> InventoryItems = new List<Item>();
 
     private int ScrollHeight = 0;
 
@@ -20,6 +20,7 @@ public class InventoryItemsDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InventoryItems.Clear();
         GetInventoryItems();
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
@@ -30,7 +31,7 @@ public class InventoryItemsDisplay : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket))
         {
-            if (ScrollHeight < InventoryItems.Length - 1)
+            if (ScrollHeight < InventoryItems.Count - 1)
             {
                 ScrollHeight += 1;
             }
@@ -40,7 +41,13 @@ public class InventoryItemsDisplay : MonoBehaviour
 
     private void GetInventoryItems()
     {
-        InventoryItems = _Player._inventory;
+        for (int i = 0; i < _Player._inventory.Length; i++)
+        {
+            if (_Player._inventory[i] != null)
+            {
+                InventoryItems.Add(_Player._inventory[i]);
+            }
+        }
     }
 
     private void DisplayItemNames()
@@ -59,6 +66,10 @@ public class InventoryItemsDisplay : MonoBehaviour
                 else if (i == ScrollHeight && ScrollHeight > 0)
                 {
                     InventoryText.text += ItemColorTag(item.spriteColor) + "<alpha=#66>" + "^<pos=10%>" + item.name + "</color>" + "\n";
+                }
+                else if (item.isEquipped == true)
+                {
+                    InventoryText.text += ItemColorTag(item.spriteColor) + "E<pos=10%>" + item.name + "</color>" + "\n";
                 }
                 else
                 {
