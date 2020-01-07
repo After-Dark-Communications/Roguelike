@@ -5,12 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class Being : MonoBehaviour
 {
-    protected string _Name;
-    protected int _Health;
-    protected int _Strength;
-    protected int _ArmorClass;
-    protected int _Experience;
-    protected int _Gold;
+    [SerializeField] protected string _Name;
+    [SerializeField] protected int _Health;
+    [SerializeField] protected int _Strength;
+    [SerializeField] protected int _ArmorClass;
+    [SerializeField] protected int _Experience;
+    [SerializeField] protected int _Gold;
+    [SerializeField] protected int _MaxHealth;
 
     public void Move()
     {
