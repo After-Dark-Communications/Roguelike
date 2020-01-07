@@ -200,12 +200,14 @@ public class Player : Being
 
                     if (enemyHealth <= 0)
                     {
-                        Debug.Log("Enemy Killed");
+                        _Experience += _Enemies[i].GetComponent<EnemyMoving>()._Experience;
+                        _ExperienceLevel = (_Experience / 20);
                         KillEnemy(_Enemies[i]);
+                        Debug.Log("Enemy Killed | Exp+" + _Enemies[i].GetComponent<EnemyMoving>()._Experience + " | LVL: " + _ExperienceLevel);
                     }
                     else
                     {
-                        Debug.Log("Attacked " + _Enemies[i].name + " | Damage Done: " + _Strength + " | NewEnemyHealth:" + (enemyHealth));
+                        Debug.Log("Attacked:" + _Enemies[i].name + " | Damaged:" + _Strength + " | RemainingHealth:" + (enemyHealth));
                     }
 
                     return;
