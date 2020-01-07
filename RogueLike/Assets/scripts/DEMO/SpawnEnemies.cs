@@ -35,7 +35,10 @@ public class SpawnEnemies : MonoBehaviour
         foreach (GameObject Go in _SpawnedEnemies)
         {
             EnemyMoving Emov = Go.GetComponent<EnemyMoving>();
-            Emov._permitMove = _TurnCheck._EnemyTurn;
+            if(_TurnCheck._EnemyTurn)
+            {
+                AI(Emov, Vector3Int.RoundToInt(Go.transform.position));
+            }
         }
     }
 
@@ -85,5 +88,96 @@ public class SpawnEnemies : MonoBehaviour
             Go.transform.position = Tiles[x];
             Tiles.Remove(Tiles[x]);
         }
+
+    }
+
+    public void AI(EnemyMoving eMov, Vector3Int CPos)
+    {
+        Vector3Int playerLocation = Vector3Int.RoundToInt(GameObject.FindGameObjectWithTag("Player").transform.position);
+        Vector3Int CurrentLocation = CPos;
+        Vector3Int LastKnownPlayerLocation = new Vector3Int(10000, 10000, 10000);
+        int TurnsSinceLastPlayerSighting = 100;
+
+        if (IsPlayerInSight(playerLocation, CurrentLocation))
+        {
+            if (IsPlayerInAttackRange(playerLocation, CurrentLocation))
+            {
+                //Attack();
+            }
+            else
+            {
+                eMov.TryMove(playerLocation.x, playerLocation.y);
+            }
+            LastKnownPlayerLocation = playerLocation;
+            TurnsSinceLastPlayerSighting = 0;
+        }
+        else
+        {
+            TurnsSinceLastPlayerSighting++;
+            if (TurnsSinceLastPlayerSighting < 8)
+            {
+                if (LastKnownPlayerLocation == CurrentLocation)
+                {
+                    eMov.MoveRandom();
+                }
+                else
+                {
+                    eMov.TryMove(playerLocation.x, playerLocation.y);
+                }
+            }
+        }
+    }
+
+    private bool IsPlayerInAttackRange(Vector3Int playerLocation, Vector3Int CurrentLocation)
+    {
+        if (playerLocation.x == CurrentLocation.x + 1 && playerLocation.y == CurrentLocation.y + 1)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x + 1 && playerLocation.y == CurrentLocation.y)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x + 1 && playerLocation.y == CurrentLocation.y - 1)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x && playerLocation.y == CurrentLocation.y + 1)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x && playerLocation.y == CurrentLocation.y)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x && playerLocation.y == CurrentLocation.y - 1)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x - 1 && playerLocation.y == CurrentLocation.y + 1)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x - 1 && playerLocation.y == CurrentLocation.y)
+        {
+            return true;
+        }
+        if (playerLocation.x == CurrentLocation.x - 1 && playerLocation.y == CurrentLocation.y - 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool IsPlayerInSight(Vector3Int playerLocation, Vector3Int CurrentLocation)
+    {
+        int sightRange = 6;
+        // Dus gewoon als de speler binnen X vakjes van het monster is...
+        if (playerLocation.x < CurrentLocation.x + sightRange && playerLocation.y < CurrentLocation.y + sightRange && playerLocation.x > CurrentLocation.x - sightRange && playerLocation.y > CurrentLocation.y - sightRange)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

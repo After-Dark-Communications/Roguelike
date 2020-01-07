@@ -29,7 +29,14 @@ public class EnemyMoving : Being
         }
     }
 
-    void TryMove(int X, int Y)
+    public void MoveRandom()
+    {
+        int X = Random.Range(-1, 2);
+        int Y = Random.Range(-1, 2);
+        TryMove(X, Y);
+    }
+
+    public void TryMove(int X, int Y)
     {
         if (!Occupied(X, Y, _WallTile, this.transform)) //check for wall
         {
