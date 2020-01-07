@@ -134,17 +134,7 @@ public class Player : Being
     {
         enemy.SetActive(false);
         _Kills++;
-        byte assingedItemSlot = 0;
-        if (!item.isArmor)
-        {
-            assingedItemSlot = gearSlotWeapon;
-        }
-        else
-        {
-            assingedItemSlot = gearSlotArmor;
-        }
-        item.isEquipped = true;
-        _inventory[assingedItemSlot] = item;
+        
     }
 
     new public void Die()
@@ -187,7 +177,20 @@ public class Player : Being
         //}
 
     }
-
+    //private void equipgear(Item item)
+    //{
+    //    byte assingedItemSlot = 0;
+    //    if (!item.isArmor)
+    //    {
+    //        assingedItemSlot = gearSlotWeapon;
+    //    }
+    //    else
+    //    {
+    //        assingedItemSlot = gearSlotArmor;
+    //    }
+    //    item.isEquipped = true;
+    //    _inventory[assingedItemSlot] = item;
+    //}
     void TryMove() //attempt to move in a given direction, checks if there is a wall or not
     {
         float X_Speed = Input.GetAxisRaw("Horizontal") * _HorizontalMoveDistance;

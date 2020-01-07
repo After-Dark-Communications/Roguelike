@@ -26,11 +26,12 @@ public class LevelProgression : MonoBehaviour
 
     private void Awake()
     {
+
         _DeeperScene = SceneManager.GetActiveScene().buildIndex + 1;
         _HigerhScene = SceneManager.GetActiveScene().buildIndex - 1;
+
         if (_HigerhScene <= 1)
         {
-            _HigerhScene = SceneManager.GetActiveScene().buildIndex;
             _SurfaceTile = null;
         }
         _Level = gameObject.GetComponent<LevelCreator>();

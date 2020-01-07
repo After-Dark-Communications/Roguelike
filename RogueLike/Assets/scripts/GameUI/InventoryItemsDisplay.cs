@@ -41,7 +41,7 @@ public class InventoryItemsDisplay : MonoBehaviour
 
     private void GetInventoryItems()
     {
-        for (int i = 0; i < _Player._inventory.Length; i++)
+        for (int i = 0; i < _Player._inventory.Length - 1; i++)
         {
             if (_Player._inventory[i] != null)
             {
@@ -56,24 +56,27 @@ public class InventoryItemsDisplay : MonoBehaviour
 
         for (int i = ScrollHeight; i < ScrollHeight + 10; i++)
         {
-            Item item = InventoryItems[i];
-            if (item != null)
+            if (InventoryItems.Count > 0)
             {
-                if (i == ScrollHeight + 9)
+                Item item = InventoryItems[i]; //of hier
+                if (item != null)
                 {
-                    InventoryText.text += ItemColorTag(item.spriteColor) + "<alpha=#66>" + "v<pos=10%>" + item.name + "</color>" + "\n";
-                }
-                else if (i == ScrollHeight && ScrollHeight > 0)
-                {
-                    InventoryText.text += ItemColorTag(item.spriteColor) + "<alpha=#66>" + "^<pos=10%>" + item.name + "</color>" + "\n";
-                }
-                else if (item.isEquipped == true)
-                {
-                    InventoryText.text += ItemColorTag(item.spriteColor) + "E<pos=10%>" + item.name + "</color>" + "\n";
-                }
-                else
-                {
-                    InventoryText.text += ItemColorTag(item.spriteColor) + "1x<pos=10%>" + item.name + "</color>" + "\n";
+                    if (i == ScrollHeight + 9)
+                    {
+                        InventoryText.text += ItemColorTag(item.spriteColor) + "<alpha=#66>" + "v<pos=10%>" + item.name + "</color>" + "\n";
+                    }
+                    else if (i == ScrollHeight && ScrollHeight > 0)
+                    {
+                        InventoryText.text += ItemColorTag(item.spriteColor) + "<alpha=#66>" + "^<pos=10%>" + item.name + "</color>" + "\n";
+                    }
+                    else if (item.isEquipped == true)
+                    {
+                        InventoryText.text += ItemColorTag(item.spriteColor) + "E<pos=10%>" + item.name + "</color>" + "\n";
+                    }
+                    else
+                    {
+                        InventoryText.text += ItemColorTag(item.spriteColor) + "1x<pos=10%>" + item.name + "</color>" + "\n";
+                    }
                 }
             }
         }

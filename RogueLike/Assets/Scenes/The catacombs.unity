@@ -555,7 +555,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: -2.761292e+20, g: -2.761292e+20, b: -2.761292e+20, a: -2.761292e+20}
   m_AnimationFrameRate: 1
-  m_Color: {r: 0, g: 0.6603774, b: 0.053429537, a: 1}
+  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
   m_Origin: {x: -11, y: -5, z: 0}
   m_Size: {x: 22, y: 13, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2519,8 +2519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Rows: 50
   _Columns: 50
-  _WallTile: {fileID: 11400000, guid: 50b3086d56814454fb69d4322596163c, type: 2}
-  _FloorTile: {fileID: 11400000, guid: b65c344dd5bdc4841ace3102b134df2b, type: 2}
+  _WallTile: {fileID: 11400000, guid: af9643f7cb2b54244925d5cf2d2b3523, type: 2}
+  _FloorTile: {fileID: 11400000, guid: b2213ee766f2242438b03ed908832134, type: 2}
   _WallTileMap: {fileID: 98176696}
   _FloorTileMap: {fileID: 1078619413}
   _RoomSettings: {x: 10, y: 4, z: 10}
@@ -3342,7 +3342,7 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: -2.7638929e+20, g: -2.7638929e+20, b: -2.7638929e+20, a: -2.7638929e+20}
   m_AnimationFrameRate: 1
-  m_Color: {r: 0, g: 0.3490566, b: 0.07871929, a: 1}
+  m_Color: {r: 0.7294118, g: 0.7294118, b: 0.7294118, a: 1}
   m_Origin: {x: -11, y: -5, z: 0}
   m_Size: {x: 22, y: 12, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -5477,7 +5477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.00015258789, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 655.074, y: 350.06}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2112416448

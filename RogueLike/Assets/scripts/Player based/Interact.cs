@@ -166,6 +166,7 @@ public class Interact
         if (Inventory[GearSlot] == null)
         {
             Item item = pickup.GetComponent<Pickup>()._item;
+            item.isEquipped = true;
             Inventory[GearSlot] = item;
             Debug.Log("equiped " + pickup.name);
         }
@@ -180,6 +181,7 @@ public class Interact
     {
         Inventory[GearSlot] = null;
         Inventory[GearSlot] = item;
+        item.isEquipped = true;
     }
     /// <summary>
     /// Unequips the gear in the specified slot
@@ -221,7 +223,7 @@ public class Interact
         player._Experience += item.giveExpFlat;
         player._ExperienceLevel += item.giveLevel;
         player._Wealth += item.giveGold;
-        
+
         player._MaxHealth += item.increaseMaxHealth;
         player._MaxMana += item.increaseMaxMana;
         player._Strength += item.modifyStrength;
@@ -231,7 +233,8 @@ public class Interact
         if ((player._Health += item.restoreHealth) > player._MaxHealth)
         {
             player._Health = player._MaxHealth;
-        } else
+        }
+        else
         {
             player._Health += item.restoreHealth;
         }
