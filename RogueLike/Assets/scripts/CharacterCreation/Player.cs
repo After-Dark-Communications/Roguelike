@@ -57,11 +57,13 @@ public class Player : Being
         _Class = (PlayerClassEnum)classId;
         _Name = name;
 
-        _Health = 8;
+        _MaxHealth = 8;
+        _Health = _MaxHealth;
         _Strength = 5;
         _Magic = 5;
         _Dex = 5;
-        _Mana = 10;
+        _MaxMana = 10;
+        _Mana = _MaxMana;
         _ArmorClass = 3;
 
         _Experience = 0;
@@ -131,6 +133,17 @@ public class Player : Being
     {
         enemy.SetActive(false);
         _Kills++;
+        byte assingedItemSlot = 0;
+        if (!item.isArmor)
+        {
+            assingedItemSlot = gearSlotWeapon;
+        }
+        else
+        {
+            assingedItemSlot = gearSlotArmor;
+        }
+        item.isEquipped = true;
+        _inventory[assingedItemSlot] = item;
     }
 
     new public void Die()
@@ -231,5 +244,32 @@ public class Player : Being
         }
         _permitMove = true;
         _StartedCoroutine = false;
+    }
+
+    public string[] GetStatusValues()
+    {
+        string[] values = new string[]
+        {
+            _Name,
+            _ExperienceLevel.ToString(),
+            _Strength.ToString(),
+            _Dex.ToString(),
+            _Magic.ToString(),
+            _ArmorClass.ToString(),
+            _Gold.ToString(),
+            _LowestFloorReached.ToString()
+        };
+        return values;
+    }
+
+    public string[] GetHealthValues()
+    {
+        string[] temp = new string[] { _Health.ToString(), _MaxHealth.ToString() };
+        return temp;
+    }
+
+    public string GetExperience()
+    {
+        return _Experience.ToString();
     }
 }

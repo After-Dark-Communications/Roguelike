@@ -86,9 +86,6 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
@@ -113,14 +110,11 @@
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Pjotr Claassen/Documents/GitHub/Roguelike/RogueLike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/2019.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -297,7 +291,7 @@
       <HintPath>D:/Unity/2019.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule">
-      <HintPath>D:/Unity/2019.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>D:/maatwerk projecten/proftaak/Roguelike/RogueLike/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>

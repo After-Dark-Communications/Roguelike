@@ -74,7 +74,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -762,9 +762,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.9676712, y: -2.6464233, z: -5.7993364}
+    m_Target: {x: 1.6862652, y: -1.9140787, z: -1014.8906}
     speed: 2
-    m_Value: {x: -3.9676712, y: -2.6464233, z: -5.7993364}
+    m_Value: {x: 1.6862652, y: -1.9140787, z: -1014.8906}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -789,17 +789,17 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     zGrid:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
+      m_Value: 1
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 57.24761
+    m_Target: 15.954045
     speed: 2
-    m_Value: 57.24761
+    m_Value: 15.954045
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewResizer:
-    m_CachedPref: 362
+    m_CachedPref: -362
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
