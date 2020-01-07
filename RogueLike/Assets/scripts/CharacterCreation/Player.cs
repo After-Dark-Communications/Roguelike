@@ -33,6 +33,7 @@ public class Player : Being
     public bool _Alive;
     public int _LowestFloorReached;
     public int _ExperienceLevel;
+    public int expToAdvanceLevel = 20;
     public int _Kills;
     public int _Wealth;
     public string _killedBy;
@@ -214,9 +215,19 @@ public class Player : Being
                     if (enemyHealth <= 0)
                     {
                         _Experience += _Enemies[i].GetComponent<EnemyMoving>()._Experience;
-                        _ExperienceLevel = (_Experience / 20);
+
+                        //_ExperienceLevel = (_Experience / 20);
+
+                        if(_Experience >= expToAdvanceLevel)
+                        {
+                            _ExperienceLevel++;
+                            _Experience -= expToAdvanceLevel;
+
+                            expToAdvanceLevel += (_ExperienceLevel * 2);
+                        }
+
                         KillEnemy(_Enemies[i]);
-                        Debug.Log("Enemy Killed | Exp+" + _Enemies[i].GetComponent<EnemyMoving>()._Experience + " | LVL: " + _ExperienceLevel);
+                        Debug.Log("Enemy Killed | Exp+" + _Enemies[i].GetComponent<EnemyMoving>()._Experience);
                     }
                     else
                     {
