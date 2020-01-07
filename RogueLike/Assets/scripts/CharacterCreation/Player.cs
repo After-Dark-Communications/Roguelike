@@ -139,6 +139,19 @@ public class Player : Being
         _killedBy = ""; //GetKiller
         _EndDate = DateTime.Now;
         //timeplayed is end date min startdate;
+        Debug.Log("Died Succesfully");
+    }
+    public void Die(string killedBy)
+    {
+        _Alive = false;
+        _killedBy = killedBy; //GetKiller
+        _EndDate = DateTime.Now;
+        //timeplayed is end date min startdate;
+        //_TimePlayed = (_EndDate - _StartDate);
+        
+        Debug.Log("Killed by: " + _killedBy);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     private void GetMovementInput()
@@ -182,7 +195,21 @@ public class Player : Being
                 Vector2 EnemyPos = _Enemies[i].transform.position;
                 if (EnemyPos == ((Vector2)_newPos + new Vector2(X_Speed, Y_Speed)) && _Enemies[i].activeSelf)
                 {
-                    KillEnemy(_Enemies[i]);
+                    _Enemies[i].GetComponent<EnemyMoving>()._Health -= _Strength;
+                    int enemyHealth = _Enemies[i].GetComponent<EnemyMoving>()._Health;
+
+                    if (enemyHealth <= 0)
+                    {
+                        _Experience += _Enemies[i].GetComponent<EnemyMoving>()._Experience;
+                        _ExperienceLevel = (_Experience / 20);
+                        KillEnemy(_Enemies[i]);
+                        Debug.Log("Enemy Killed | Exp+" + _Enemies[i].GetComponent<EnemyMoving>()._Experience + " | LVL: " + _ExperienceLevel);
+                    }
+                    else
+                    {
+                        Debug.Log("Attacked:" + _Enemies[i].name + " | Damaged:" + _Strength + " | RemainingHealth:" + (enemyHealth));
+                    }
+
                     return;
                 }
             }
