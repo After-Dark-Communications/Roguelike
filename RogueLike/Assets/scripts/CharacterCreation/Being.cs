@@ -41,4 +41,18 @@ public class Being : MonoBehaviour
             return false;
         }
     }
+
+    protected bool Occupied2(int X, int Y, Tilemap _WallTile, Transform go)
+    {
+        if (_WallTile.GetTile(new Vector3Int(X, Y, 0)))
+        {
+            //Debug.Log("Tile:" + new Vector3Int((int)transform.position.x + X, (int)transform.position.y + Y, 0));
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

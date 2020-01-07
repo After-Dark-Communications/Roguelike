@@ -95,8 +95,9 @@ public class SpawnEnemies : MonoBehaviour
     {
         Vector3Int playerLocation = Vector3Int.RoundToInt(GameObject.FindGameObjectWithTag("Player").transform.position);
         Vector3Int CurrentLocation = CPos;
-        Vector3Int LastKnownPlayerLocation = new Vector3Int(10000, 10000, 10000);
-        int TurnsSinceLastPlayerSighting = 100;
+        Vector3Int LastKnownPlayerLocation = new Vector3Int(10000, 10000, 0);
+        //int TurnsSinceLastPlayerSighting = 100;
+        eMov._SpawnedEnemies = _SpawnedEnemies;
 
         if (IsPlayerInSight(playerLocation, CurrentLocation))
         {
@@ -106,25 +107,25 @@ public class SpawnEnemies : MonoBehaviour
             }
             else
             {
-                eMov.TryMove(playerLocation.x, playerLocation.y);
+                eMov.FindNextTile(CurrentLocation, playerLocation);
             }
             LastKnownPlayerLocation = playerLocation;
-            TurnsSinceLastPlayerSighting = 0;
+            //TurnsSinceLastPlayerSighting = 0;
         }
         else
         {
-            TurnsSinceLastPlayerSighting++;
-            if (TurnsSinceLastPlayerSighting < 8)
-            {
-                if (LastKnownPlayerLocation == CurrentLocation)
-                {
-                    eMov.MoveRandom();
-                }
-                else
-                {
-                    eMov.TryMove(playerLocation.x, playerLocation.y);
-                }
-            }
+            //TurnsSinceLastPlayerSighting++;
+            //if (TurnsSinceLastPlayerSighting < 8)
+            //{
+            //    if (LastKnownPlayerLocation == CurrentLocation)
+            //    {
+            //        eMov.MoveRandom();
+            //    }
+            //    else
+            //    {
+            //        eMov.FindNextTile(CurrentLocation, playerLocation);
+            //    }
+            //}
         }
     }
 

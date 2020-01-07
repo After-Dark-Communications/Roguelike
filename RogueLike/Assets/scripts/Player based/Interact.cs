@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class Interact
 {
-
     private readonly string _ItemTag = "Item";
     /// <summary>
     /// Picks up the gear that the player is standing on.
@@ -244,14 +243,12 @@ public class Interact
         {
             player._Mana += item.restoreMana;
         }
-
     }
     /// <summary>
     /// Drops the selected item.
     /// </summary>
     public void DropItem()//Important
     {
-
     }
     /// <summary>
     /// Sell the selected item.  
@@ -259,7 +256,6 @@ public class Interact
     /// <param name="ItemValue">The value of the item being sold.</param>
     public void SellItem(int ItemValue, Item itemToSell)
     {
-
     }
     /// <summary>
     /// Buys the selected item.
