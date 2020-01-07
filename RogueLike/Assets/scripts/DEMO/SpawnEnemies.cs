@@ -48,6 +48,11 @@ public class SpawnEnemies : MonoBehaviour
             Enemy.name = "Enemy" + i;
             SpriteRenderer SpriteR = Enemy.AddComponent<SpriteRenderer>();
             EnemyMoving Emov = Enemy.AddComponent<EnemyMoving>();
+            // Stats
+            Enemy.GetComponent<EnemyMoving>()._MaxHealth = Random.Range(1, 11);
+            Enemy.GetComponent<EnemyMoving>()._Health = Enemy.GetComponent<EnemyMoving>()._MaxHealth;
+            Enemy.GetComponent<EnemyMoving>()._Strength = Random.Range(1, 5);
+            Enemy.GetComponent<EnemyMoving>()._Experience = Random.Range(1, 20);
             //sprite setup
             SpriteR.sprite = _EnemySprites[Random.Range(0, _EnemySprites.Count)];
             SpriteR.color = _EnemyColor;

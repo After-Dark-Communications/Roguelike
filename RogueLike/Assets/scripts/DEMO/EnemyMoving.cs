@@ -49,7 +49,21 @@ public class EnemyMoving : Being
             }
             else
             {
-                Debug.Log("Attack Player at: " + (gameObject.transform.position.x + X) + " ," + (gameObject.transform.position.y + Y));
+                // Monster Deals damage to Player
+                GameObject _PlayerObj = GameObject.FindGameObjectWithTag(_PlayerTag);
+                _PlayerObj.GetComponent<Player>()._Health -= _Strength;
+
+                int playerHealth = _PlayerObj.GetComponent<Player>()._Health;
+
+                if (playerHealth <= 0)
+                {
+                    _PlayerObj.GetComponent<Player>().Die(gameObject.name);
+                }
+                else
+                {
+                    // (gameObject.transform.position.x + X) + " ," + (gameObject.transform.position.y + Y) 
+                    Debug.Log("Attacked Player | Damage Done:" + _Strength + " | NewPlayerHealth:" + (playerHealth));
+                }
             }
         }
     }
