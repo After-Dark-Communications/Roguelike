@@ -27,7 +27,7 @@ public class TurnCheck : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
         _CurrentPos = _Player.transform.position;
 
